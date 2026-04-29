@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/full_roadmap_ai_enthusiast_2025/',
+  base: '/full_roadmap_ai_enthusiast_2026/',
 })
