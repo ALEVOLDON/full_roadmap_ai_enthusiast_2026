@@ -7,77 +7,77 @@ This roadmap shows how to build real AI products in 2026 — step by step.
 
 ## ⚡ START HERE
 
-Не знаешь с чего начать? Убери паралич выбора:
+Don't know where to begin? Eliminate analysis paralysis:
 
-- 🟢 **Новичок?** → Иди в [Beginner Path](#-1-beginner-path)
-- 🟡 **Есть опыт в коде?** → Сразу в [Developer Path](#-2-developer-path)
-- 💰 **Хочешь запустить продукт?** → Переходи в [Money Path](#-3-money-path)
+- 🟢 **Beginner?** → Start with the [Beginner Path](#-1-beginner-path)
+- 🟡 **Have coding experience?** → Jump straight to the [Developer Path](#-2-developer-path)
+- 💰 **Want to launch a product?** → Go directly to the [Money Path](#-3-money-path)
 
-> **Важно:** Не пропускай проекты. Они — твой главный результат. **Build > Learn.**
-
----
-
-## 🟢 1. BEGINNER PATH: Основы и Инструментарий
-**Цель:** Понять возможности LLM и научиться ими управлять без сложного кода.
-
-### Шаг 1: AI Literacy
-- **LLM Basics:** Как работают токены, контекстное окно и температура.
-- **Prompt Engineering & System Prompting:** Понимание reasoning-моделей (системные промпты, управление Extended Thinking, контекстные подсказки).
-- **Инструменты:** ChatGPT (o1/o3-mini), Claude (Artifacts / Claude Code CLI), v0.dev.
-
-### 🧪 ПРОЕКТ №1: "Smart Content Factory"
-**Зачем это нужно:** 👉 Это база для автоматизации маркетинга, SMM и контент-агентств.
-**ТЗ:** Создать систему, которая превращает одну идею в 5 разных форматов контента (Summary, Twitter thread, LinkedIn post и т.д.).
-*Критерий успеха: Система выдает готовый к публикации контент без правок.*
+> **Important:** Do not skip the projects. They are your primary output. **Build > Learn.**
 
 ---
 
-## 🟡 2. DEVELOPER PATH: Агенты и Данные
-**Цель:** Создать автономные системы, которые умеют работать с внешними данными.
+## 🟢 1. BEGINNER PATH: Fundamentals and Tools
+**Goal:** Understand the capabilities of LLMs and learn how to orchestrate them without writing complex code.
 
-### Шаг 1: API & Frameworks
-- **Backend:** Python (FastAPI) или Node.js.
+### Step 1: AI Literacy
+- **LLM Basics:** How tokens, context windows, and temperature work.
+- **Prompt Engineering & System Prompting:** Understanding reasoning models (system prompts, managing Extended Thinking, contextual prompting).
+- **Tools:** ChatGPT (o1/o3-mini), Claude (Artifacts / Claude Code CLI), v0.dev.
+
+### 🧪 PROJECT #1: "Smart Content Factory"
+**Why it matters:** 👉 This is the foundation for automating marketing, SMM, and content agencies.
+**Task description:** Build a system that takes a single idea and transforms it into 5 different content formats (Summary, Twitter thread, LinkedIn post, etc.).
+*Success criteria: The system outputs ready-to-publish content that requires no manual editing.*
+
+---
+
+## 🟡 2. DEVELOPER PATH: Agents and Data
+**Goal:** Create autonomous systems that can work with external data.
+
+### Step 1: API & Frameworks
+- **Backend:** Python (FastAPI) or Node.js.
 - **AI Frameworks & Protocols:** PydanticAI, LangGraph, OpenAI SDK, **Model Context Protocol (MCP)**.
-- **RAG & Vector Search:** Векторные базы данных (Pinecone/Qdrant), pgvector (Supabase), гибридный поиск.
+- **RAG & Vector Search:** Vector Databases (Pinecone/Qdrant), pgvector (Supabase), hybrid search.
 
-### 🧪 ПРОЕКТ №2: "Second Brain Telegram Bot + MCP Server"
-**Зачем это нужно:** 👉 Это основа для корпоративных ассистентов и умных инструментов поиска по знаниям компаний.
-**ТЗ:** Бот с RAG, отвечающий на основе твоих файлов (PDF/Links), и собственный MCP-сервер для связи бота с твоей локальной файловой системой или Notion.
-*Критерий успеха: Бот не придумывает факты, а ссылается на документы, используя MCP для доступа.*
+### 🧪 PROJECT #2: "Second Brain Telegram Bot + MCP Server"
+**Why it matters:** 👉 This is the baseline for corporate assistants and smart knowledge search tools within companies.
+**Task description:** A Telegram bot using RAG to answer questions strictly based on your files (PDFs/Links), coupled with a custom MCP server to connect the bot to your local file system or Notion.
+*Success criteria: The bot does not hallucinate facts, referencing your documents and using MCP for access.*
 
 ---
 
-## 💰 3. MONEY PATH: Продукт и Рынок
-**Цель:** Превратить код в сервис, за который готовы платить.
+## 💰 3. MONEY PATH: Product and Market
+**Goal:** Turn code into a service that people are willing to pay for.
 
-### Шаг 1: SaaS Architecture
+### Step 1: SaaS Architecture
 - **UI & AI Integration:** Next.js 15 + Tailwind v4 + v0.dev + **Vercel AI SDK**.
-- **Optimization & Routing:** Семантическая маршрутизация (Semantic Routing) и кэширование промптов для экономии API-токенов.
+- **Optimization & Routing:** Outperforming routing (Semantic Routing) and prompt caching to optimize API costs.
 - **Payments & Auth:** Stripe + Clerk.
 
-### 🧪 ПРОЕКТ №3: "Micro-SaaS for Business"
-**Зачем это нужно:** 👉 Это твой первый работающий бизнес в облаке.
-**ТЗ:** Полноценное веб-приложение, решающее узкую B2B задачу (например: AI-генератор юридических договоров).
-*Критерий успеха: Работающий UI, авторизация, семантическое кэширование запросов и первая попытка интеграции оплаты.*
+### 🧪 PROJECT #3: "Micro-SaaS for Business"
+**Why it matters:** 👉 This is your first working business in the cloud.
+**Task description:** A full-featured web application that solves a narrow B2B problem (e.g., an AI-powered legal contract generator).
+*Success criteria: Working UI, user authentication, semantic request caching, and a basic Stripe payment integration.*
 
 ---
 
 ## 🎯 RESULT
-Если ты дошел до конца:
-- У тебя есть **3+ рыночных проекта** в портфолио.
-- Ты понимаешь, как строятся сложные AI-системы (Agents, RAG, MCP).
-- Ты можешь запустить свой продукт за выходные.
-- Ты готов брать заказы на фрилансе или идти в AI-стартап.
+If you reach the end:
+- You will have **3+ market-ready projects** in your portfolio.
+- You will understand how to build complex AI systems (Agents, RAG, MCP).
+- You can launch your own product over a single weekend.
+- You will be ready to take freelance orders or join an AI startup.
 
-**Это уже не обучение. Это вход в рынок.**
+**This is no longer just studying. This is entering the market.**
 
 ---
 
 ## ❌ STOP DOING THIS
-В 2026 выигрывают не те, кто знает больше, а те, кто быстрее строит. Ты не обязан:
-- ❌ Учить высшую математику годами.
-- ❌ Читать 50 теоретических курсов подряд.
-- ❌ Становиться классическим ML-учёным.
+In 2026, those who build faster win over those who just know more. You do not need to:
+- ❌ Study advanced mathematics for years.
+- ❌ Take 50 theoretical courses in a row.
+- ❌ Become a traditional ML researcher.
 
 👉 **Build first. Learn what's missing later.**
 
@@ -93,9 +93,9 @@ This roadmap shows how to build real AI products in 2026 — step by step.
 ---
 
 ## ⭐ SUPPORT
-Если этот roadmap помог тебе сэкономить время:
-- Поставь звезду ⭐
-- Сделай fork
-- Поделись с другом
+If this roadmap helped you save time:
+- Give it a star ⭐
+- Fork the repository
+- Share it with a friend
 
-Это помогает развивать проект и добавлять новые кейсы.
+It helps grow the project and add new case studies.
