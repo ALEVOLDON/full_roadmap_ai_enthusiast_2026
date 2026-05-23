@@ -41,7 +41,20 @@ const ProjectTracker = ({ projects, onToggle }) => {
                 0{index + 1}
               </div>
               <div>
-                <h4 className="font-bold text-on-surface text-lg">{project.title}</h4>
+                <div className="flex items-center gap-3">
+                  <h4 className="font-bold text-on-surface text-lg">{project.title}</h4>
+                  {project.url && (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-500 hover:text-secondary flex items-center p-1 transition-colors"
+                      title="Изучить проектные материалы"
+                    >
+                      <span className="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
+                    </a>
+                  )}
+                </div>
                 <p className="text-sm text-on-surface-variant font-body-md">{project.description}</p>
               </div>
             </div>

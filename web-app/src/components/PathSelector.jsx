@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const PathSelector = ({ paths, selectedPath, onSelect }) => {
+const PathSelector = ({ paths, selectedPath, onSelect, onToggleStep }) => {
   const getColorClasses = (color) => {
     switch (color) {
       case 'primary': return { text: 'text-primary', border: 'border-primary', glow: 'glow-border-purple', bg: 'bg-primary' };
@@ -40,22 +40,40 @@ const PathSelector = ({ paths, selectedPath, onSelect }) => {
             <div className="space-y-4 mb-8 relative pl-4">
               <div className={`absolute left-0 top-2 bottom-2 w-[1px] ${colors.bg}/30 opacity-30`}></div>
               {path.steps.map((step) => (
-                <div key={step.id} className="relative flex items-center gap-3">
-                  <div className={`w-2 h-2 rounded-full z-10 ${
-                    step.completed ? `${colors.bg} shadow-[0_0_8px_rgba(168,85,247,1)]` :
-                    step.started || step.inProgress ? `${colors.bg}/40 border ${colors.border}` :
-                    'bg-slate-700 border border-slate-600'
-                  }`}></div>
-                  <span className={`text-xs font-medium ${
-                    step.completed ? colors.text :
-                    step.started || step.inProgress ? 'text-on-surface' :
-                    'text-slate-500'
-                  }`}>
-                    {step.label}
-                  </span>
-                  {step.completed && <span className={`material-symbols-outlined ${colors.text} text-[10px]`} data-icon="check_circle">check_circle</span>}
-                  {step.started && <span className="px-1.5 py-0.5 rounded bg-surface-container-high text-[6px] font-bold text-on-surface-variant uppercase tracking-widest">Started</span>}
-                  {step.inProgress && <span className="px-1.5 py-0.5 rounded bg-surface-container-high text-[6px] font-bold text-on-surface-variant uppercase tracking-widest">In Progress</span>}
+                <div 
+                  key={step.id} 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onToggleStep(path.id, step.id);
+                  }}
+                  className="relative flex items-center justify-between group/step cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={`w-3 h-3 rounded flex items-center justify-center transition-all z-10 ${
+                      step.completed ? `${colors.bg} shadow-[0_0_8px_rgba(168,85,247,0.4)]` : 'border border-white/20'
+                    }`}>
+                      {step.completed && (
+                        <span className="material-symbols-outlined text-slate-900 font-bold text-[8px]" data-icon="check">check</span>
+                      )}
+                    </div>
+                    <span className={`text-xs font-medium transition-colors ${
+                      step.completed ? colors.text : 'text-slate-400 group-hover/step:text-white'
+                    }`}>
+                      {step.label}
+                    </span>
+                  </div>
+                  {step.url && (
+                    <a
+                      href={step.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-slate-500 hover:text-secondary opacity-0 group-hover/step:opacity-100 transition-opacity flex items-center p-1"
+                      title="Изучить материал"
+                    >
+                      <span className="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
+                    </a>
+                  )}
                 </div>
               ))}
             </div>

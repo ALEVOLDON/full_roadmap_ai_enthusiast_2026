@@ -25,7 +25,10 @@ function App() {
     return saved ? JSON.parse(saved) : initialProjects;
   });
 
-  const [globalProgress, setGlobalProgress] = useState(42);
+  const [pathsState, setPathsState] = useState(() => {
+    const saved = localStorage.getItem('ai_roadmap_2026_paths_state');
+    return saved ? JSON.parse(saved) : paths;
+  });
 
   useEffect(() => {
     localStorage.setItem('ai_roadmap_2026_path', selectedPath);
@@ -35,11 +38,35 @@ function App() {
     localStorage.setItem('ai_roadmap_2026_projects', JSON.stringify(projects));
   }, [projects]);
 
+  useEffect(() => {
+    localStorage.setItem('ai_roadmap_2026_paths_state', JSON.stringify(pathsState));
+  }, [pathsState]);
+
   const handleToggleProject = (id) => {
     setProjects(prev => prev.map(p => 
       p.id === id ? { ...p, completed: !p.completed } : p
     ));
   };
+
+  const handleToggleStep = (pathId, stepId) => {
+    setPathsState(prev => prev.map(p => {
+      if (p.id === pathId) {
+        const updatedSteps = p.steps.map(s => 
+          s.id === stepId ? { ...s, completed: !s.completed } : s
+        );
+        const completedCount = updatedSteps.filter(s => s.completed).length;
+        const progress = Math.round((completedCount / updatedSteps.length) * 100);
+        return { ...p, steps: updatedSteps, progress };
+      }
+      return p;
+    }));
+  };
+
+  // Calculate dynamic global progress
+  const totalSteps = pathsState.reduce((acc, p) => acc + p.steps.length, 0);
+  const completedSteps = pathsState.reduce((acc, p) => acc + p.steps.filter(s => s.completed).length, 0);
+  const completedProjects = projects.filter(p => p.completed).length;
+  const globalProgress = Math.round(((completedSteps + completedProjects) / (totalSteps + projects.length)) * 100);
 
   return (
     <div className="mesh-gradient min-h-screen">
@@ -66,9 +93,10 @@ function App() {
           </motion.p>
           
           <PathSelector 
-            paths={paths} 
+            paths={pathsState} 
             selectedPath={selectedPath} 
             onSelect={setSelectedPath} 
+            onToggleStep={handleToggleStep}
           />
         </section>
 

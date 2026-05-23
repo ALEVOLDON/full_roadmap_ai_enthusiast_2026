@@ -5,11 +5,11 @@ export const paths = [
     title: 'Beginner',
     description: 'Fundamental concepts of LLMs, prompt engineering, and basic orchestration.',
     color: 'primary',
-    progress: 66,
+    progress: 0,
     steps: [
-      { id: 'b1', label: 'Python Basics', completed: true },
-      { id: 'b2', label: 'System Prompting', started: true },
-      { id: 'b3', label: 'LLM Reasoning', locked: true },
+      { id: 'b1', label: 'Python Basics', completed: false, url: 'https://docs.python.org/3/tutorial/' },
+      { id: 'b2', label: 'System Prompting', completed: false, url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts' },
+      { id: 'b3', label: 'LLM Reasoning', completed: false, url: 'https://platform.openai.com/docs/guides/reasoning' },
     ]
   },
   {
@@ -18,12 +18,12 @@ export const paths = [
     title: 'Developer',
     description: 'RAG pipelines, MCP servers, and agentic workflows integration.',
     color: 'secondary',
-    progress: 33,
+    progress: 0,
     active: true,
     steps: [
-      { id: 'd1', label: 'API Setup', completed: true },
-      { id: 'd2', label: 'RAG Logic & pgvector', inProgress: true },
-      { id: 'd3', label: 'MCP Server Development', locked: true },
+      { id: 'd1', label: 'API Setup', completed: false, url: 'https://github.com/openai/openai-node' },
+      { id: 'd2', label: 'RAG Logic & pgvector', completed: false, url: 'https://supabase.com/docs/guides/database/extensions/pgvector' },
+      { id: 'd3', label: 'MCP Server Development', completed: false, url: 'https://modelcontextprotocol.io' },
     ]
   },
   {
@@ -34,9 +34,9 @@ export const paths = [
     color: 'tertiary',
     progress: 0,
     steps: [
-      { id: 'm1', label: 'Micro-SaaS Launch', locked: true },
-      { id: 'm2', label: 'Semantic Routing', locked: true },
-      { id: 'm3', label: 'Global Scaling', locked: true },
+      { id: 'm1', label: 'Micro-SaaS Launch', completed: false, url: 'https://nextjs.org/docs' },
+      { id: 'm2', label: 'Semantic Routing', completed: false, url: 'https://sdk.vercel.ai/docs/introduction' },
+      { id: 'm3', label: 'Global Scaling', completed: false, url: 'https://stripe.com/docs' },
     ]
   }
 ];
@@ -66,20 +66,23 @@ export const initialProjects = [
     title: 'Semantic Search Engine',
     description: 'Build a local PDF analyzer using RAG and ChromaDB.',
     xp: 300,
-    completed: true
+    completed: false,
+    url: 'https://github.com/chroma-core/chroma'
   },
   {
     id: 2,
     title: 'Autonomous SDR Agent',
-    description: 'Multi-agent system for lead gen and personalized outreach.',
+    description: 'Multi-agent system for lead gen and personalized outreach using LangGraph or PydanticAI.',
     xp: 500,
-    completed: false
+    completed: false,
+    url: 'https://ai.pydantic.dev'
   },
   {
     id: 3,
     title: 'Micro-SaaS Dashboard',
-    description: 'Deploy an AI-powered analytics suite to Vercel.',
+    description: 'Deploy an AI-powered analytics suite to Vercel with Stripe/Clerk.',
     xp: 1000,
-    completed: false
+    completed: false,
+    url: 'https://clerk.com'
   }
 ];
