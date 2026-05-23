@@ -14,14 +14,6 @@ const ProgressDashboard = ({ progress }) => {
               : `You are currently outperforming ${Math.min(99, Math.round(10 + progress * 0.85))}% of enthusiasts on this path.`
             }
           </p>
-          <div className="flex flex-wrap justify-center md:justify-start gap-4">
-            <button className="px-8 py-3 bg-primary text-on-primary-container font-bold rounded-lg shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] transition-all uppercase tracking-widest text-xs">
-              Resume Session
-            </button>
-            <button className="px-8 py-3 glass-panel text-on-surface font-bold rounded-lg border-primary/20 hover:bg-primary/5 transition-all uppercase tracking-widest text-xs">
-              View Milestone
-            </button>
-          </div>
         </div>
         
         <div className="relative w-64 h-64 flex items-center justify-center">
