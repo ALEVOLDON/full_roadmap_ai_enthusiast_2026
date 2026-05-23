@@ -1,46 +1,68 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, Circle, Trophy } from 'lucide-react';
 
 const ProjectTracker = ({ projects, onToggle }) => {
-  const completedCount = projects.filter(p => p.completed).length;
+  const getBorderColor = (index) => {
+    if (index === 0) return 'border-l-primary/60';
+    if (index === 1) return 'border-l-secondary/60';
+    return 'border-l-tertiary/60';
+  };
+
+  const getBadgeColor = (index) => {
+    if (index === 0) return 'bg-primary/10 text-primary border-primary/40';
+    if (index === 1) return 'bg-secondary/10 text-secondary border-secondary/40';
+    return 'bg-tertiary/10 text-tertiary border-tertiary/40';
+  };
+
+  const getCheckColor = (index) => {
+    if (index === 0) return 'bg-primary shadow-[0_0_10px_rgba(168,85,247,0.5)]';
+    if (index === 1) return 'bg-secondary shadow-[0_0_10px_rgba(76,215,246,0.5)]';
+    return 'bg-tertiary shadow-[0_0_10px_rgba(78,222,163,0.5)]';
+  };
 
   return (
-    <section className="mb-20">
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h2 className="text-3xl font-bold font-outfit">🧪 Required Projects</h2>
-          <p className="text-muted text-sm mt-2">❗ Без них не двигаться дальше</p>
-        </div>
-        <div className="flex items-center gap-3 glass px-4 py-2 border-emerald-500/30">
-          <Trophy className="w-5 h-5 text-emerald-400" />
-          <span className="font-bold text-emerald-400">{completedCount} / {projects.length}</span>
-        </div>
+    <section id="projects" className="mb-section-gap">
+      <div className="mb-12">
+        <span className="text-xs font-bold uppercase tracking-widest text-tertiary mb-2 block font-inter">Mission Control</span>
+        <h2 className="text-3xl lg:text-4xl font-bold">Proof of Build</h2>
       </div>
-
-      <div className="grid grid-cols-1 md-grid-cols-3 gap-6">
-        {projects.map((project) => (
+      
+      <div className="space-y-4">
+        {projects.map((project, index) => (
           <motion.div
             key={project.id}
-            whileHover={{ y: -5 }}
-            onClick={() => onToggle(project.id)}
-            className={`glass p-6 cursor-pointer border-2 transition-all ${
-              project.completed ? 'border-emerald-500/50 bg-emerald-500/5' : 'border-white-5 hover-border-white-10'
-            }`}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className={`glass-panel p-6 flex items-center justify-between border-l-4 ${getBorderColor(index)}`}
           >
-            <div className="flex justify-between items-start mb-4">
-              <h4 className={`font-bold text-lg ${project.completed ? 'text-emerald-400' : ''}`}>
-                {project.title}
-              </h4>
-              {project.completed ? (
-                <CheckCircle2 className="w-6 h-6 text-emerald-500" />
-              ) : (
-                <Circle className="w-6 h-6 text-slate-600" />
-              )}
+            <div className="flex items-center gap-6">
+              <div className={`w-12 h-12 rounded flex items-center justify-center font-bold font-space-grotesk ${getBadgeColor(index)} border`}>
+                0{index + 1}
+              </div>
+              <div>
+                <h4 className="font-bold text-on-surface text-lg">{project.title}</h4>
+                <p className="text-sm text-on-surface-variant font-body-md">{project.description}</p>
+              </div>
             </div>
-            <p className="text-muted text-sm leading-relaxed">
-              {project.description}
-            </p>
+            
+            <div className="flex items-center gap-4">
+              <span className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest ${getBadgeColor(index)}`}>
+                {project.xp} XP
+              </span>
+              <button
+                onClick={() => onToggle(project.id)}
+                className={`w-8 h-8 rounded border-2 transition-all flex items-center justify-center ${
+                  project.completed 
+                    ? getCheckColor(index) + ' border-transparent' 
+                    : 'border-white/10 hover:border-white/30'
+                }`}
+              >
+                {project.completed && (
+                  <span className="material-symbols-outlined text-on-background font-bold text-sm" data-icon="check">check</span>
+                )}
+              </button>
+            </div>
           </motion.div>
         ))}
       </div>

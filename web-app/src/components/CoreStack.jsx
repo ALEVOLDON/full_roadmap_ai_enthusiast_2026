@@ -1,29 +1,63 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const CoreStack = ({ data }) => {
+const CoreStack = ({ stack }) => {
+  const getIcon = (category) => {
+    switch (category) {
+      case 'AI Core': return '🧠';
+      case 'Backend': return '⚙️';
+      case 'Automation': return '🧩';
+      case 'Frontend': return '🎨';
+      default: return '🛠';
+    }
+  };
+
+  const getBorderClass = (category) => {
+    if (category === 'Backend') return 'glow-border-cyan';
+    if (category === 'Frontend') return 'glow-border-emerald';
+    return '';
+  };
+
+  const getBadgeClass = (category) => {
+    if (category === 'AI Core') return 'bg-primary/10 border-primary/30 text-primary';
+    if (category === 'Backend') return 'bg-secondary/10 border-secondary/30 text-secondary';
+    if (category === 'Frontend') return 'bg-tertiary/10 border-tertiary/30 text-tertiary';
+    return 'bg-surface-container-high border-outline-variant text-on-surface-variant';
+  };
+
   return (
-    <section className="mb-20">
-      <h2 className="text-3xl font-bold mb-8 text-center font-outfit">🔥 Core Stack (2026)</h2>
-      <div className="grid grid-cols-1 md-grid-cols-2 lg-grid-cols-4 gap-6">
-        {data.map((item, idx) => (
-          <motion.div 
-            key={idx}
-            initial={{ opacity: 0, y: 10 }}
+    <section id="stack" className="mb-section-gap">
+      <div className="flex justify-between items-end mb-12">
+        <div>
+          <span className="text-xs font-bold uppercase tracking-widest text-primary mb-2 block font-inter">Tooling</span>
+          <h2 className="text-3xl lg:text-4xl font-bold">The 2026 Core Stack</h2>
+        </div>
+        <div className="text-on-surface-variant font-body-md border-b border-outline-variant hidden sm:block">Latest Update: Jan 12</div>
+      </div>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {stack.map((item, index) => (
+          <motion.div
+            key={item.category}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
-            className="glass p-6 border-white-5"
+            transition={{ delay: index * 0.1 }}
+            className={`glass-panel p-6 ${getBorderClass(item.category)}`}
           >
-            <h4 className="text-purple-400 font-bold mb-4 text-sm uppercase tracking-wider">{item.category}</h4>
-            <ul className="space-y-2">
-              {item.tools.map((tool, tIdx) => (
-                <li key={tIdx} className="text-slate-300 text-sm flex items-center gap-2">
-                  <div className="w-1 h-1 bg-purple-500 rounded-full" />
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-2xl">{getIcon(item.category)}</span>
+              <h4 className="text-xl font-bold text-on-surface">{item.category}</h4>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {item.tools.map((tool) => (
+                <span
+                  key={tool}
+                  className={`px-3 py-1 rounded border text-[10px] font-bold uppercase tracking-widest ${getBadgeClass(item.category)}`}
+                >
                   {tool}
-                </li>
+                </span>
               ))}
-            </ul>
+            </div>
           </motion.div>
         ))}
       </div>
