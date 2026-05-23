@@ -9,7 +9,10 @@ const ProgressDashboard = ({ progress }) => {
         <div className="z-10 text-center md:text-left">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">Operational Mastery</h2>
           <p className="text-lg text-on-surface-variant mb-8 max-w-md font-body-lg">
-            You are currently outperforming 78% of enthusiasts in the "Agentic Orchestration" module.
+            {progress === 0 
+              ? "Select a path and check your first task to start tracking your progress." 
+              : `You are currently outperforming ${Math.min(99, Math.round(10 + progress * 0.85))}% of enthusiasts on this path.`
+            }
           </p>
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
             <button className="px-8 py-3 bg-primary text-on-primary-container font-bold rounded-lg shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] transition-all uppercase tracking-widest text-xs">
