@@ -10,7 +10,6 @@ import ProgressDashboard from './components/ProgressDashboard';
 import CoreStack from './components/CoreStack';
 import ProjectTracker from './components/ProjectTracker';
 import MasteryTimeline from './components/MasteryTimeline';
-import AIHub from './components/AIHub';
 import FAQ from './components/FAQ';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
@@ -110,8 +109,6 @@ function App() {
         />
 
         <MasteryTimeline />
-        
-        <AIHub />
         
         <FAQ />
         
