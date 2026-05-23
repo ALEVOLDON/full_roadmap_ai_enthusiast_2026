@@ -5,9 +5,7 @@ const Sidebar = () => {
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: 'dashboard', active: true },
     { id: 'roadmap', label: 'Roadmap', icon: 'route' },
-    { id: 'hub', label: 'The Hub', icon: 'hub' },
     { id: 'faq', label: 'FAQ', icon: 'quiz' },
-    { id: 'settings', label: 'Settings', icon: 'settings' },
   ];
 
   return (
@@ -18,8 +16,8 @@ const Sidebar = () => {
             <span className="material-symbols-outlined text-secondary" data-icon="auto_awesome">auto_awesome</span>
           </div>
           <div>
-            <div className="font-space-grotesk text-sm uppercase tracking-widest text-secondary font-bold">Level 42</div>
-            <div className="text-[10px] text-slate-500 uppercase tracking-widest font-inter">AI Architect</div>
+            <div className="font-space-grotesk text-sm uppercase tracking-widest text-secondary font-bold">AI Roadmap</div>
+            <div className="text-[10px] text-slate-500 uppercase tracking-widest font-inter">Reference Guide</div>
           </div>
         </div>
       </div>
@@ -44,17 +42,15 @@ const Sidebar = () => {
       </nav>
 
       <div className="mt-auto px-6 pt-6 border-t border-secondary/10">
-        <button className="w-full py-3 rounded-lg bg-secondary/10 border border-secondary/30 text-secondary font-bold text-xs uppercase tracking-widest hover:bg-secondary/20 transition-all mb-6">
-          Join Discord
-        </button>
         <div className="flex flex-col gap-2">
-          <a className="flex items-center gap-4 text-slate-500 hover:text-secondary font-space-grotesk text-xs uppercase tracking-widest transition-all" href="#">
+          <a 
+            className="flex items-center gap-4 text-slate-500 hover:text-secondary font-space-grotesk text-xs uppercase tracking-widest transition-all" 
+            href="https://github.com/ALEVOLDON/full_roadmap_ai_enthusiast_2026/blob/main/README.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span className="material-symbols-outlined text-sm" data-icon="description">description</span>
             Docs
-          </a>
-          <a className="flex items-center gap-4 text-slate-500 hover:text-error transition-all font-space-grotesk text-xs uppercase tracking-widest" href="#">
-            <span className="material-symbols-outlined text-sm" data-icon="logout">logout</span>
-            Logout
           </a>
         </div>
       </div>
