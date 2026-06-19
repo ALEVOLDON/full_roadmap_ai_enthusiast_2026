@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { paths, coreStack, initialProjects } from './data/paths';
-import { useLanguage } from './context/LanguageContext';
+import { useLanguage } from './context/language';
 
 // Components
 import Header from './components/Header';
@@ -11,6 +11,7 @@ import ProgressDashboard from './components/ProgressDashboard';
 import CoreStack from './components/CoreStack';
 import ProjectTracker from './components/ProjectTracker';
 import MasteryTimeline from './components/MasteryTimeline';
+import AIHub from './components/AIHub';
 import FAQ from './components/FAQ';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
@@ -30,7 +31,7 @@ function App() {
           const match = parsed.find(item => item.id === p.id);
           return match ? { ...p, completed: match.completed } : p;
         });
-      } catch (e) {
+      } catch {
         return initialProjects;
       }
     }
@@ -55,7 +56,7 @@ function App() {
           }
           return p;
         });
-      } catch (e) {
+      } catch {
         return paths;
       }
     }
@@ -142,6 +143,8 @@ function App() {
         />
 
         <MasteryTimeline />
+
+        <AIHub />
         
         <FAQ />
         

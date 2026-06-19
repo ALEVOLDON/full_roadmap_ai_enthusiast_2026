@@ -1,5 +1,4 @@
-import React from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/language';
 
 const Footer = () => {
   const { t } = useLanguage();
