@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 const ProjectTracker = ({ projects, onToggle }) => {
+  const { lang, t } = useLanguage();
+
   const getBorderColor = (index) => {
     if (index === 0) return 'border-l-primary/60';
     if (index === 1) return 'border-l-secondary/60';
@@ -21,10 +24,10 @@ const ProjectTracker = ({ projects, onToggle }) => {
   };
 
   return (
-    <section id="projects" className="mb-section-gap">
+    <section id="projects" className="mb-section-gap scroll-mt-24">
       <div className="mb-12">
-        <span className="text-xs font-bold uppercase tracking-widest text-tertiary mb-2 block font-inter">Mission Control</span>
-        <h2 className="text-3xl lg:text-4xl font-bold">Proof of Build</h2>
+        <span className="text-xs font-bold uppercase tracking-widest text-tertiary mb-2 block font-inter">{t('missionControl')}</span>
+        <h2 className="text-3xl lg:text-4xl font-bold">{t('proofOfBuild')}</h2>
       </div>
       
       <div className="space-y-4">
@@ -42,26 +45,26 @@ const ProjectTracker = ({ projects, onToggle }) => {
               </div>
               <div>
                 <div className="flex items-center gap-3">
-                  <h4 className="font-bold text-on-surface text-lg">{project.title}</h4>
+                  <h4 className="font-bold text-on-surface text-lg">{project.title[lang] || project.title}</h4>
                   {project.url && (
                     <a
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-slate-500 hover:text-secondary flex items-center p-1 transition-colors"
-                      title="Изучить проектные материалы"
+                      title={t('studyProjectMaterial')}
                     >
                       <span className="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
                     </a>
                   )}
                 </div>
-                <p className="text-sm text-on-surface-variant font-body-md">{project.description}</p>
+                <p className="text-sm text-on-surface-variant font-body-md">{project.description[lang] || project.description}</p>
               </div>
             </div>
             
             <div className="flex items-center gap-4">
               <span className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest ${getBadgeColor(index)}`}>
-                {project.xp} XP
+                {project.xp} {t('xp')}
               </span>
               <button
                 onClick={() => onToggle(project.id)}

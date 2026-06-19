@@ -1,18 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 const ProgressDashboard = ({ progress }) => {
+  const { t, lang } = useLanguage();
+
+  const getProgressMessage = () => {
+    if (progress === 0) {
+      return lang === 'ru'
+        ? "Выберите трек и отметьте свою первую задачу, чтобы начать отслеживать прогресс."
+        : "Select a path and check your first task to start tracking your progress.";
+    }
+    const percent = Math.min(99, Math.round(10 + progress * 0.85));
+    return lang === 'ru'
+      ? `Вы на данный момент опережаете ${percent}% энтузиастов на этом пути.`
+      : `You are currently outperforming ${percent}% of enthusiasts on this path.`;
+  };
+
   return (
-    <section className="mb-section-gap">
+    <section id="dashboard" className="mb-section-gap scroll-mt-24">
       <div className="glass-panel p-8 lg:p-12 flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
         <div className="z-10 text-center md:text-left">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Operational Mastery</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t('overallCompletion')}</h2>
           <p className="text-lg text-on-surface-variant mb-8 max-w-md font-body-lg">
-            {progress === 0 
-              ? "Select a path and check your first task to start tracking your progress." 
-              : `You are currently outperforming ${Math.min(99, Math.round(10 + progress * 0.85))}% of enthusiasts on this path.`
-            }
+            {getProgressMessage()}
           </p>
         </div>
         
@@ -36,7 +48,7 @@ const ProgressDashboard = ({ progress }) => {
           </svg>
           <div className="absolute flex flex-col items-center">
             <span className="text-4xl text-on-surface font-bold font-space-grotesk">{progress}%</span>
-            <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Global Progress</span>
+            <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">{t('overallCompletion')}</span>
           </div>
         </div>
       </div>

@@ -1,11 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 const Sidebar = () => {
+  const { t } = useLanguage();
+
   const navItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: 'dashboard', active: true },
-    { id: 'roadmap', label: 'Roadmap', icon: 'route' },
-    { id: 'faq', label: 'FAQ', icon: 'quiz' },
+    { id: 'dashboard', label: t('dashboard'), icon: 'dashboard', active: true },
+    { id: 'roadmap', label: t('roadmap'), icon: 'route' },
+    { id: 'faq', label: t('faq'), icon: 'quiz' },
   ];
 
   return (
@@ -16,8 +19,8 @@ const Sidebar = () => {
             <span className="material-symbols-outlined text-secondary" data-icon="auto_awesome">auto_awesome</span>
           </div>
           <div>
-            <div className="font-space-grotesk text-sm uppercase tracking-widest text-secondary font-bold">AI Roadmap</div>
-            <div className="text-[10px] text-slate-500 uppercase tracking-widest font-inter">Reference Guide</div>
+            <div className="font-space-grotesk text-sm uppercase tracking-widest text-secondary font-bold">{t('title')}</div>
+            <div className="text-[10px] text-slate-500 uppercase tracking-widest font-inter">{t('referenceGuide')}</div>
           </div>
         </div>
       </div>
@@ -50,7 +53,7 @@ const Sidebar = () => {
             rel="noopener noreferrer"
           >
             <span className="material-symbols-outlined text-sm" data-icon="description">description</span>
-            Docs
+            {t('docs')}
           </a>
         </div>
       </div>

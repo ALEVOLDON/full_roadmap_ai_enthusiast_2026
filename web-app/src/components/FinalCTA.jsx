@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 const FinalCTA = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="mb-section-gap relative">
       <div className="particle-bg rounded-3xl p-12 lg:p-24 text-center border border-primary/20 overflow-hidden relative">
@@ -12,10 +15,10 @@ const FinalCTA = () => {
             whileInView={{ opacity: 1, y: 0 }}
             className="text-4xl lg:text-5xl font-bold mb-8 leading-tight"
           >
-            The Horizon Awaits <br/> <span className="text-primary">Your Evolution.</span>
+            {t('horizonAwaits')} <br/> <span className="text-primary">{t('yourEvolution')}</span>
           </motion.h2>
           <p className="text-on-surface-variant font-body-lg mb-12 max-w-xl mx-auto">
-            Don't just watch the future happen. Build it. Secure your place in the next generation of AI architects.
+            {t('ctaSubtitle')}
           </p>
           <motion.button 
             whileHover={{ scale: 1.05 }}
@@ -23,7 +26,7 @@ const FinalCTA = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="px-10 lg:px-16 py-5 lg:py-6 bg-primary text-on-primary-container font-bold text-lg lg:text-xl rounded-xl shadow-[0_0_50px_rgba(168,85,247,0.5)] hover:shadow-[0_0_70px_rgba(168,85,247,0.7)] transition-all font-space-grotesk tracking-widest uppercase"
           >
-            Start Your Journey
+            {t('startJourney')}
           </motion.button>
         </div>
         

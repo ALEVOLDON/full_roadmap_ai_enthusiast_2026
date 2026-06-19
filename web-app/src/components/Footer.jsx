@@ -1,12 +1,15 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="lg:ml-64 border-t border-primary/10 bg-slate-950/40 backdrop-blur-md py-12 px-8 lg:px-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex flex-col gap-2 text-center md:text-left">
-          <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">AI Enthusiast Roadmap</span>
-          <p className="text-slate-500 text-sm font-space-grotesk tracking-widest uppercase">Build &gt; Learn</p>
+          <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{t('title')}</span>
+          <p className="text-slate-500 text-sm font-space-grotesk tracking-widest uppercase">{t('footerSubtitle')}</p>
         </div>
         
         <div className="flex flex-wrap justify-center gap-8">
@@ -17,7 +20,7 @@ const Footer = () => {
         </div>
         
         <div className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] text-center md:text-right">
-          © 2026 Synthetic Horizon. No rights reserved. Just code.
+          {t('rightsReserved')}
         </div>
       </div>
       

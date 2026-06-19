@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { paths, coreStack, initialProjects } from './data/paths';
+import { useLanguage } from './context/LanguageContext';
 
 // Components
 import Header from './components/Header';
@@ -15,18 +16,50 @@ import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 
 function App() {
+  const { t } = useLanguage();
   const [selectedPath, setSelectedPath] = useState(() => {
     return localStorage.getItem('ai_roadmap_2026_path') || 'developer';
   });
   
   const [projects, setProjects] = useState(() => {
     const saved = localStorage.getItem('ai_roadmap_2026_projects');
-    return saved ? JSON.parse(saved) : initialProjects;
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return initialProjects.map(p => {
+          const match = parsed.find(item => item.id === p.id);
+          return match ? { ...p, completed: match.completed } : p;
+        });
+      } catch (e) {
+        return initialProjects;
+      }
+    }
+    return initialProjects;
   });
 
   const [pathsState, setPathsState] = useState(() => {
     const saved = localStorage.getItem('ai_roadmap_2026_paths_state');
-    return saved ? JSON.parse(saved) : paths;
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return paths.map(p => {
+          const matchPath = parsed.find(item => item.id === p.id);
+          if (matchPath) {
+            const updatedSteps = p.steps.map(s => {
+              const matchStep = matchPath.steps.find(step => step.id === s.id);
+              return matchStep ? { ...s, completed: matchStep.completed } : s;
+            });
+            const completedCount = updatedSteps.filter(s => s.completed).length;
+            const progress = Math.round((completedCount / updatedSteps.length) * 100);
+            return { ...p, steps: updatedSteps, progress };
+          }
+          return p;
+        });
+      } catch (e) {
+        return paths;
+      }
+    }
+    return paths;
   });
 
   useEffect(() => {
@@ -80,7 +113,7 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl lg:text-7xl font-bold text-on-surface mb-6 leading-tight font-space-grotesk"
           >
-            Forge Your <span className="text-primary">Intelligence.</span>
+            {t('forgeYour')} <span className="text-primary">{t('intelligence')}</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -88,7 +121,7 @@ function App() {
             transition={{ delay: 0.1 }}
             className="text-lg lg:text-xl text-on-surface-variant max-w-2xl mb-12 font-body-lg"
           >
-            Navigate the complexities of the 2026 AI landscape with a precision-engineered curriculum designed for creators, not just consumers.
+            {t('heroSubtitle')}
           </motion.p>
           
           <PathSelector 

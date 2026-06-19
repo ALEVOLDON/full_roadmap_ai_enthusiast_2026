@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 const PathSelector = ({ paths, selectedPath, onSelect, onToggleStep }) => {
+  const { lang, t } = useLanguage();
+
   const getColorClasses = (color) => {
     switch (color) {
       case 'primary': return { text: 'text-primary', border: 'border-primary', glow: 'glow-border-purple', bg: 'bg-primary' };
@@ -12,7 +15,7 @@ const PathSelector = ({ paths, selectedPath, onSelect, onToggleStep }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+    <div id="paths" className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start scroll-mt-24">
       {paths.map((path) => {
         const colors = getColorClasses(path.color);
         const isActive = selectedPath === path.id;
@@ -27,14 +30,14 @@ const PathSelector = ({ paths, selectedPath, onSelect, onToggleStep }) => {
             }`}
           >
             <div className="flex justify-between items-center mb-4">
-              <div className={`text-[10px] font-bold uppercase tracking-[0.2em] ${colors.text}`}>{path.level}</div>
+              <div className={`text-[10px] font-bold uppercase tracking-[0.2em] ${colors.text}`}>{path.level[lang] || path.level}</div>
               {isActive && (
-                <span className={`px-2 py-0.5 rounded ${path.color === 'secondary' ? 'bg-secondary/20 text-secondary' : 'bg-primary/20 text-primary'} text-[8px] font-bold uppercase tracking-widest`}>Active</span>
+                <span className={`px-2 py-0.5 rounded ${path.color === 'secondary' ? 'bg-secondary/20 text-secondary' : 'bg-primary/20 text-primary'} text-[8px] font-bold uppercase tracking-widest`}>{t('active')}</span>
               )}
             </div>
             
-            <h3 className="text-2xl font-bold mb-2">{path.title}</h3>
-            <p className="text-on-surface-variant text-sm mb-6 font-body-md">{path.description}</p>
+            <h3 className="text-2xl font-bold mb-2">{path.title[lang] || path.title}</h3>
+            <p className="text-on-surface-variant text-sm mb-6 font-body-md">{path.description[lang] || path.description}</p>
             
             {/* Nested Steps */}
             <div className="space-y-4 mb-8 relative pl-4">
@@ -59,7 +62,7 @@ const PathSelector = ({ paths, selectedPath, onSelect, onToggleStep }) => {
                     <span className={`text-xs font-medium transition-colors ${
                       step.completed ? colors.text : 'text-slate-400 group-hover/step:text-white'
                     }`}>
-                      {step.label}
+                      {step.label[lang] || step.label}
                     </span>
                   </div>
                   {step.url && (
@@ -69,7 +72,7 @@ const PathSelector = ({ paths, selectedPath, onSelect, onToggleStep }) => {
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
                       className="text-slate-500 hover:text-secondary opacity-0 group-hover/step:opacity-100 transition-opacity flex items-center p-1"
-                      title="Изучить материал"
+                      title={t('studyMaterial')}
                     >
                       <span className="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
                     </a>
