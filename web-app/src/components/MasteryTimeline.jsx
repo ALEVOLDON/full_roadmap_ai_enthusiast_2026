@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/language';
 
 const MasteryTimeline = () => {
   const { lang, t } = useLanguage();
@@ -10,7 +9,7 @@ const MasteryTimeline = () => {
       {
         id: 'q1',
         title: 'Q1: Reasoning & Agents',
-        description: 'Mastering Claude 3.7 and DeepSeek-R1 extended thinking, alongside Model Context Protocol (MCP). Building autonomous tool-use loops.',
+        description: 'Mastering GPT-5.5 and Claude Fable 5 / Opus 4.8 reasoning patterns, alongside Model Context Protocol (MCP). Building autonomous tool-use loops.',
         color: 'primary',
         active: true,
       },
@@ -42,7 +41,7 @@ const MasteryTimeline = () => {
       {
         id: 'q1',
         title: 'Q1: Рассуждения и Агенты',
-        description: 'Освоение глубинного мышления Claude 3.7 и DeepSeek-R1, а также Model Context Protocol (MCP). Создание автономных циклов работы с инструментами.',
+        description: 'Освоение паттернов рассуждения GPT-5.5 и Claude Fable 5 / Opus 4.8, а также Model Context Protocol (MCP). Создание автономных циклов работы с инструментами.',
         color: 'primary',
         active: true,
       },

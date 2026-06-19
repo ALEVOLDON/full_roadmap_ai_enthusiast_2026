@@ -25,7 +25,7 @@ Don't know where to begin? Eliminate analysis paralysis:
 ### Step 1: AI Literacy
 - **LLM Basics:** How tokens, context windows, and temperature work.
 - **Prompt Engineering & System Prompting:** Understanding reasoning models (system prompts, managing Extended Thinking, contextual prompting).
-- **Tools:** ChatGPT (GPT-5.5 / o3-mini), Claude (Artifacts / Claude Code CLI), Gemini (Gemini 3.5 Flash / Google AI Studio), v0.dev.
+- **Tools:** ChatGPT (GPT-5.5 / o3-mini), Claude (Fable 5 / Opus 4.8 / Sonnet 4.6, Artifacts / Claude Code CLI), Gemini (Gemini 3.5 Flash / Google AI Studio), v0.dev.
 
 ### 🧪 PROJECT #1: "Smart Content Factory"
 **Why it matters:** 👉 This is the foundation for automating marketing, SMM, and content agencies.
@@ -86,7 +86,7 @@ In 2026, those who build faster win over those who just know more. You do not ne
 ---
 
 ## 🔥 CORE STACK 2026
-- **Models:** Claude Opus 4.8 / Sonnet 4 (Claude Code), OpenAI GPT-5.5 & o3-mini, Gemini 3.5 Pro & Flash, DeepSeek-V4 Pro, Llama 4.
+- **Models:** Claude Fable 5 / Opus 4.8 / Sonnet 4.6 (Claude Code), OpenAI GPT-5.5 & o3-mini, Gemini 3.5 Pro & Flash, DeepSeek-V4 Pro, Llama 4.
 - **Protocols:** Model Context Protocol (MCP).
 - **Orchestration:** LangGraph / PydanticAI / Vercel AI SDK.
 - **Frontend:** Next.js 15+ + Tailwind v4 + Shadcn UI.

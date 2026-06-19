@@ -53,7 +53,7 @@ export const paths = [
 export const coreStack = [
   {
     category: { en: 'AI Core', ru: 'Ядро ИИ' },
-    tools: ['Claude Opus 4.8 / Sonnet 4', 'GPT-5.5 / o3-mini', 'Gemini 3.5 Pro / Flash', 'DeepSeek-V4 Pro']
+    tools: ['Claude Fable 5 / Opus 4.8', 'Claude Sonnet 4.6 / Haiku 4.5', 'GPT-5.5 / o3-mini', 'Gemini 3.5 Pro / Flash', 'DeepSeek-V4 Pro']
   },
   {
     category: { en: 'Backend & Data', ru: 'Бэкенд и Данные' },

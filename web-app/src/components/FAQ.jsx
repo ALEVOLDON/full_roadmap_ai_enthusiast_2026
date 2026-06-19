@@ -1,5 +1,4 @@
-import React from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/language';
 
 const FAQ = () => {
   const { lang, t } = useLanguage();
@@ -7,8 +6,8 @@ const FAQ = () => {
   const faqs = {
     en: [
       {
-        question: 'Is this roadmap updated for the latest GPT-5.5 and Claude 4/4.5 releases?',
-        answer: 'Yes, we update the curriculum weekly. The GPT-5.5 and Claude Opus 4.8 orchestration modules are currently being integrated in Level 02 (Developer) and Level 03 (Money).',
+        question: 'Is this roadmap updated for the latest GPT-5.5 and Claude Fable 5 / Opus 4.8 releases?',
+        answer: 'Yes. The GPT-5.5, Claude Fable 5, and Claude Opus 4.8 orchestration modules are reflected in Level 02 (Developer) and Level 03 (Money).',
       },
       {
         question: 'Do I need a GPU to complete Level 02?',
@@ -21,8 +20,8 @@ const FAQ = () => {
     ],
     ru: [
       {
-        question: 'Обновлена ли эта дорожная карта под последние релизы GPT-5.5 и Claude 4/4.5?',
-        answer: 'Да, мы обновляем программу еженедельно. Модули оркестрации под GPT-5.5 и Claude Opus 4.8 в данный момент внедрены на уровне Разработчика (Level 02) и Монетизации (Level 03).',
+        question: 'Обновлена ли эта дорожная карта под последние релизы GPT-5.5 и Claude Fable 5 / Opus 4.8?',
+        answer: 'Да. Модули оркестрации под GPT-5.5, Claude Fable 5 и Claude Opus 4.8 отражены на уровне Разработчика (Level 02) и Монетизации (Level 03).',
       },
       {
         question: 'Нужен ли мне GPU для прохождения Уровня 02?',

@@ -25,7 +25,7 @@
 ### Шаг 1: ИИ-грамотность
 - **База LLM:** Как работают токены, контекстные окна и температура.
 - **Промпт-инжиниринг и системные промпты:** Понимание рассуждающих моделей (системные промпты, управление Extended Thinking, контекстное промптирование).
-- **Инструменты:** ChatGPT (GPT-5.5 / o3-mini), Claude (Artifacts / Claude Code CLI), Gemini (Gemini 3.5 Flash / Google AI Studio), v0.dev.
+- **Инструменты:** ChatGPT (GPT-5.5 / o3-mini), Claude (Fable 5 / Opus 4.8 / Sonnet 4.6, Artifacts / Claude Code CLI), Gemini (Gemini 3.5 Flash / Google AI Studio), v0.dev.
 
 ### 🧪 ПРОЕКТ №1: "Умная фабрика контента"
 **Почему это важно:** 👉 Это основа для автоматизации маркетинга, SMM и контент-агентств.
@@ -86,7 +86,7 @@
 ---
 
 ## 🔥 ОСНОВНОЙ СТЕК 2026
-- **Модели:** Claude Opus 4.8 / Sonnet 4 (Claude Code), OpenAI GPT-5.5 & o3-mini, Gemini 3.5 Pro & Flash, DeepSeek-V4 Pro, Llama 4.
+- **Модели:** Claude Fable 5 / Opus 4.8 / Sonnet 4.6 (Claude Code), OpenAI GPT-5.5 & o3-mini, Gemini 3.5 Pro & Flash, DeepSeek-V4 Pro, Llama 4.
 - **Протоколы:** Model Context Protocol (MCP).
 - **Оркестрация:** LangGraph / PydanticAI / Vercel AI SDK.
 - **Фронтенд:** Next.js 15+ + Tailwind v4 + Shadcn UI.
