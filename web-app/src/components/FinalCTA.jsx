@@ -20,6 +20,7 @@ const FinalCTA = () => {
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="px-10 lg:px-16 py-5 lg:py-6 bg-primary text-on-primary-container font-bold text-lg lg:text-xl rounded-xl shadow-[0_0_50px_rgba(168,85,247,0.5)] hover:shadow-[0_0_70px_rgba(168,85,247,0.7)] transition-all font-space-grotesk tracking-widest uppercase"
           >
             Start Your Journey

@@ -5,7 +5,7 @@ export const roadmapData = [
     period: "Январь — Март",
     goal: "Перейти от простых чатов к пониманию того, как ИИ \"думает\" и выполняет сложные задачи.",
     tasks: [
-      { id: "1-1", text: "Reasoning Models: Изучение архитектур моделей с \"рассуждением\" (OpenAI o1/o3-mini, Claude 3.7 Sonnet, DeepSeek-R1).", completed: false },
+      { id: "1-1", text: "Reasoning Models: Изучение архитектур моделей с \"рассуждением\" (OpenAI GPT-5.5 / o3-mini, Claude Opus 4.8 / Sonnet 4, Gemini 3.5 Pro, DeepSeek-V4 Pro).", completed: false },
       { id: "1-2", text: "System 1 vs System 2: Понимание разницы между быстрым и медленным мышлением ИИ.", completed: false },
       { id: "1-3", text: "Model Context Protocol: Основы работы с MCP для подключения моделей к внешним средам.", completed: false },
       { id: "1-4", text: "Ресурсы: Прохождение курса \"AI Agents in Practice\".", completed: false }
@@ -21,7 +21,7 @@ export const roadmapData = [
       { id: "2-1", text: "Local Infrastructure: Установка Ollama и LM Studio на системы с NPU, использование Exo для распределенного инференса.", completed: false },
       { id: "2-2", text: "OpenWebUI: Настройка личного хаба для всех локальных моделей.", completed: false },
       { id: "2-3", text: "Personal RAG & MCP: Интеграция систем типа AnythingLLM и написание локальных MCP-серверов для поиска по файлам.", completed: false },
-      { id: "2-4", text: "Small Language Models: Оптимизация и квантование моделей (Llama 3.2/Phi-4) для мобильных устройств.", completed: false }
+      { id: "2-4", text: "Small Language Models: Оптимизация и квантование моделей (Llama 4 / Phi-4 / Gemma 3) для мобильных устройств.", completed: false }
     ],
     icon: "Shield"
   },

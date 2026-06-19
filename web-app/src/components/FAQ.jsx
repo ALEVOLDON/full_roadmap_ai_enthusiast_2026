@@ -3,8 +3,8 @@ import React from 'react';
 const FAQ = () => {
   const faqs = [
     {
-      question: 'Is this roadmap updated for the latest o1-pro release?',
-      answer: 'Yes, we update the curriculum weekly. The o1-pro orchestration module is currently being beta-tested in Level 02 (Developer).',
+      question: 'Is this roadmap updated for the latest GPT-5.5 and Claude 4/4.5 releases?',
+      answer: 'Yes, we update the curriculum weekly. The GPT-5.5 and Claude Opus 4.8 orchestration modules are currently being integrated in Level 02 (Developer) and Level 03 (Money).',
     },
     {
       question: 'Do I need a GPU to complete Level 02?',

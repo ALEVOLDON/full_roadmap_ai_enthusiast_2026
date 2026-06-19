@@ -14,14 +14,6 @@ const Footer = () => {
             <span className="material-symbols-outlined text-lg" data-icon="terminal">terminal</span>
             <span className="text-xs font-bold uppercase tracking-widest">GitHub</span>
           </a>
-          <a className="text-slate-400 hover:text-secondary transition-colors flex items-center gap-2 group" href="#">
-            <span className="material-symbols-outlined text-lg" data-icon="alternate_email">alternate_email</span>
-            <span className="text-xs font-bold uppercase tracking-widest">X</span>
-          </a>
-          <a className="text-slate-400 hover:text-tertiary transition-colors flex items-center gap-2 group" href="#">
-            <span className="material-symbols-outlined text-lg" data-icon="forum">forum</span>
-            <span className="text-xs font-bold uppercase tracking-widest">Discord</span>
-          </a>
         </div>
         
         <div className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] text-center md:text-right">

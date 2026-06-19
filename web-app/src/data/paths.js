@@ -44,7 +44,7 @@ export const paths = [
 export const coreStack = [
   {
     category: 'AI Core',
-    tools: ['Claude 3.7 Sonnet', 'DeepSeek-R1', 'OpenAI o1/o3-mini']
+    tools: ['Claude Opus 4.8 / Sonnet 4', 'GPT-5.5 / o3-mini', 'Gemini 3.5 Pro / Flash', 'DeepSeek-V4 Pro']
   },
   {
     category: 'Backend & Data',
@@ -56,7 +56,7 @@ export const coreStack = [
   },
   {
     category: 'Frontend',
-    tools: ['Next.js 15', 'Tailwind v4', 'Vercel AI SDK']
+    tools: ['Next.js 15+', 'Tailwind v4', 'Vercel AI SDK']
   }
 ];
 
