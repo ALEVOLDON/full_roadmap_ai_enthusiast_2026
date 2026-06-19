@@ -27,6 +27,7 @@ export const translations = {
     pathwayLevelsProgress: "Pathway Levels Progress",
     pathsStatus: "Paths Status",
     completedSteps: "Completed steps",
+    exportProgress: "Export Progress",
 
     // Core Stack
     coreStackTitle: "The 2026 Core Stack",
@@ -84,6 +85,7 @@ export const translations = {
     pathwayLevelsProgress: "Прогресс по уровням обучения",
     pathsStatus: "Статус направлений",
     completedSteps: "Выполнено шагов",
+    exportProgress: "Экспорт прогресса",
 
     // Core Stack
     coreStackTitle: "Основной стек 2026",

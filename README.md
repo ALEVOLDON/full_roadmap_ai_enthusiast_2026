@@ -11,6 +11,7 @@ This roadmap shows how to build real AI products in 2026 — step by step.
 
 Don't know where to begin? Eliminate analysis paralysis:
 
+- 🖥️ **[Interactive Dashboard](https://alevoldon.github.io/full_roadmap_ai_enthusiast_2026/)** — track your progress, steps, and projects
 - 🟢 **Beginner?** → Start with the [Beginner Path](#1-beginner-path-fundamentals-and-tools)
 - 🟡 **Have coding experience?** → Jump straight to the [Developer Path](#2-developer-path-agents-and-data)
 - 💰 **Want to launch a product?** → Go directly to the [Money Path](#3-money-path-product-and-market)
@@ -31,6 +32,8 @@ Don't know where to begin? Eliminate analysis paralysis:
 **Why it matters:** 👉 This is the foundation for automating marketing, SMM, and content agencies.
 **Task description:** Build a system that takes a single idea and transforms it into 5 different content formats (Summary, Twitter thread, LinkedIn post, etc.).
 *Success criteria: The system outputs ready-to-publish content that requires no manual editing.*
+
+📁 **Starter template:** [`projects/01-content-factory/`](projects/01-content-factory/)
 
 ---
 
@@ -99,5 +102,6 @@ If this roadmap helped you save time:
 - Give it a star ⭐
 - Fork the repository
 - Share it with a friend
+- Contribute — see [CONTRIBUTING.md](CONTRIBUTING.md)
 
 It helps grow the project and add new case studies.

@@ -4,8 +4,12 @@ const Sidebar = () => {
   const { t } = useLanguage();
 
   const navItems = [
-    { id: 'dashboard', label: t('dashboard'), icon: 'dashboard', active: true },
-    { id: 'roadmap', label: t('roadmap'), icon: 'route' },
+    { id: 'paths', label: t('pathways'), icon: 'route' },
+    { id: 'dashboard', label: t('dashboard'), icon: 'dashboard' },
+    { id: 'stack', label: t('stack'), icon: 'layers' },
+    { id: 'projects', label: t('projects'), icon: 'rocket_launch' },
+    { id: 'roadmap', label: t('roadmap'), icon: 'timeline' },
+    { id: 'hub', label: t('community'), icon: 'groups' },
     { id: 'faq', label: t('faq'), icon: 'quiz' },
   ];
 
@@ -22,19 +26,15 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-      
+
       <nav className="flex-1">
         {navItems.map((item) => (
           <a
             key={item.id}
             href={`#${item.id}`}
-            className={`flex items-center gap-4 px-6 py-4 font-space-grotesk text-sm uppercase tracking-widest transition-all group ${
-              item.active 
-                ? 'bg-secondary/10 text-secondary border-r-4 border-secondary font-bold' 
-                : 'text-slate-500 hover:text-secondary hover:bg-slate-900/50'
-            }`}
+            className="flex items-center gap-4 px-6 py-3 font-space-grotesk text-sm uppercase tracking-widest transition-all group text-slate-500 hover:text-secondary hover:bg-slate-900/50"
           >
-            <span className={`material-symbols-outlined ${!item.active && 'group-hover:translate-x-1 transition-transform'}`} data-icon={item.icon}>
+            <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon={item.icon}>
               {item.icon}
             </span>
             {item.label}
@@ -44,8 +44,8 @@ const Sidebar = () => {
 
       <div className="mt-auto px-6 pt-6 border-t border-secondary/10">
         <div className="flex flex-col gap-2">
-          <a 
-            className="flex items-center gap-4 text-slate-500 hover:text-secondary font-space-grotesk text-xs uppercase tracking-widest transition-all" 
+          <a
+            className="flex items-center gap-4 text-slate-500 hover:text-secondary font-space-grotesk text-xs uppercase tracking-widest transition-all"
             href="https://github.com/ALEVOLDON/full_roadmap_ai_enthusiast_2026/blob/main/README.md"
             target="_blank"
             rel="noopener noreferrer"
