@@ -1,5 +1,7 @@
 # 🚀 AI Roadmap 2026 — From Zero to Builder
 
+🇷🇺 [Русская версия](README.ru.md) | 🇺🇸 [English version](README.md)
+
 🔥 **Stop wasting time on useless AI courses.**  
 This roadmap shows how to build real AI products in 2026 — step by step.
 
