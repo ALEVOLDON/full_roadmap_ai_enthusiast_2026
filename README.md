@@ -11,9 +11,9 @@ This roadmap shows how to build real AI products in 2026 — step by step.
 
 Don't know where to begin? Eliminate analysis paralysis:
 
-- 🟢 **Beginner?** → Start with the [Beginner Path](#-1-beginner-path)
-- 🟡 **Have coding experience?** → Jump straight to the [Developer Path](#-2-developer-path)
-- 💰 **Want to launch a product?** → Go directly to the [Money Path](#-3-money-path)
+- 🟢 **Beginner?** → Start with the [Beginner Path](#1-beginner-path-fundamentals-and-tools)
+- 🟡 **Have coding experience?** → Jump straight to the [Developer Path](#2-developer-path-agents-and-data)
+- 💰 **Want to launch a product?** → Go directly to the [Money Path](#3-money-path-product-and-market)
 
 > **Important:** Do not skip the projects. They are your primary output. **Build > Learn.**
 
