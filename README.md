@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/alevoldon-full-roadmap-ai-enthusiast-2026-badge.png)](https://mseep.ai/app/alevoldon-full-roadmap-ai-enthusiast-2026)
+
 # 🚀 AI Roadmap 2026 — From Zero to Builder
 
 🇷🇺 [Русская версия](README.ru.md) | 🇺🇸 [English version](README.md)
