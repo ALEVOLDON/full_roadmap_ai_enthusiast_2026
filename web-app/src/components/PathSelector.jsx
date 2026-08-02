@@ -70,7 +70,7 @@ const PathSelector = ({ paths, selectedPath, onSelect, onToggleStep }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="text-slate-500 hover:text-secondary opacity-0 group-hover/step:opacity-100 transition-opacity flex items-center p-1"
+                      className="text-slate-500 hover:text-secondary opacity-75 sm:opacity-0 sm:group-hover/step:opacity-100 transition-opacity flex items-center p-1.5"
                       title={t('studyMaterial')}
                     >
                       <span className="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>

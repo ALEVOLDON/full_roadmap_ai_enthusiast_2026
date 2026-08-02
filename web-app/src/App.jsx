@@ -184,14 +184,14 @@ function App() {
       />
       <Sidebar />
 
-      <main className="lg:ml-64 pt-32 px-6 lg:px-12 pb-24 max-w-7xl mx-auto">
+      <main className="lg:ml-64 pt-24 sm:pt-32 px-4 sm:px-6 lg:px-12 pb-24 max-w-7xl mx-auto">
         <section className="mb-section-gap">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
             <div>
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-4xl lg:text-7xl font-bold text-on-surface mb-4 leading-tight font-space-grotesk"
+                className="text-3xl sm:text-5xl lg:text-7xl font-bold text-on-surface mb-4 leading-tight font-space-grotesk"
               >
                 {t('forgeYour')} <span className="text-primary">{t('intelligence')}</span>
               </motion.h1>

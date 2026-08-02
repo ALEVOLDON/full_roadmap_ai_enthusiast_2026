@@ -18,7 +18,7 @@ const ProgressDashboard = ({ progress, onExport }) => {
 
   return (
     <section id="dashboard" className="mb-section-gap scroll-mt-24">
-      <div className="glass-panel p-8 lg:p-12 flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden">
+      <div className="glass-panel p-6 sm:p-8 lg:p-12 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
         <div className="z-10 text-center md:text-left">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t('overallCompletion')}</h2>
