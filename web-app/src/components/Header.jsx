@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLanguage } from '../context/language';
 
-const Header = ({ onOpenCheatSheet, onOpenShare }) => {
+const Header = ({ onOpenCheatSheet, onOpenShare, onOpenQuiz }) => {
   const { lang, toggleLanguage, t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -43,6 +43,14 @@ const Header = ({ onOpenCheatSheet, onOpenShare }) => {
         </div>
 
         <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+          <button
+            onClick={onOpenQuiz}
+            className="flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-lg border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 transition-all text-xs font-semibold cursor-pointer"
+            title={lang === 'ru' ? 'Пройти тест' : 'Find Path Quiz'}
+          >
+            🧩 <span className="hidden sm:inline">{lang === 'ru' ? 'Пройти тест' : 'Quiz'}</span>
+          </button>
+
           <button
             onClick={onOpenCheatSheet}
             className="flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 transition-all text-xs font-semibold cursor-pointer"
@@ -91,6 +99,16 @@ const Header = ({ onOpenCheatSheet, onOpenShare }) => {
             </nav>
 
             <div className="mt-auto pt-6 border-t border-slate-800 flex flex-col gap-3">
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  onOpenQuiz();
+                }}
+                className="w-full py-2.5 px-4 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-300 font-medium text-sm flex items-center justify-center gap-2"
+              >
+                🧩 {lang === 'ru' ? 'Пройти тест' : 'Find Path Quiz'}
+              </button>
+
               <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);

@@ -150,6 +150,17 @@ export const initialProjects = [
     completed: false,
     url: `${REPO_BASE}/tree/main/projects/03-micro-saas`,
   },
+  {
+    id: 4,
+    title: { en: 'Multi-Agent Orchestrator', ru: 'Мультиагентный оркестратор' },
+    description: {
+      en: 'Autonomous collaboration loop between Planner, Executor, and Reviewer agents with revision feedback.',
+      ru: 'Автономный цикл взаимодействия агентов Планировщика, Исполнителя и Ревьюера с проверкой качества.',
+    },
+    xp: 1500,
+    completed: false,
+    url: `${REPO_BASE}/tree/main/projects/04-multi-agent-orchestrator`,
+  },
 ];
 
 export const timelineStages = [

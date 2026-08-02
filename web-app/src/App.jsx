@@ -18,6 +18,9 @@ import Footer from './components/Footer';
 import SearchFilter from './components/SearchFilter';
 import ShareProgressModal from './components/ShareProgressModal';
 import CheatSheetModal from './components/CheatSheetModal';
+import AIMentorWidget from './components/AIMentorWidget';
+import Achievements from './components/Achievements';
+import PathQuizModal from './components/PathQuizModal';
 
 function mergeTimelineState(saved) {
   return timelineStages.map((stage) => {
@@ -40,6 +43,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isCheatSheetOpen, setIsCheatSheetOpen] = useState(false);
+  const [isQuizOpen, setIsQuizOpen] = useState(false);
 
   const [projects, setProjects] = useState(() => {
     const saved = localStorage.getItem('ai_roadmap_2026_projects');
@@ -181,6 +185,7 @@ function App() {
       <Header
         onOpenCheatSheet={() => setIsCheatSheetOpen(true)}
         onOpenShare={() => setIsShareOpen(true)}
+        onOpenQuiz={() => setIsQuizOpen(true)}
       />
       <Sidebar />
 
@@ -220,6 +225,8 @@ function App() {
 
         <ProgressDashboard progress={globalProgress} onExport={() => setIsShareOpen(true)} />
 
+        <Achievements globalProgress={globalProgress} completedProjectsCount={completedProjects} />
+
         <CoreStack stack={coreStack} />
 
         <ProjectTracker
@@ -241,6 +248,8 @@ function App() {
 
       <Footer />
 
+      <AIMentorWidget />
+
       <ShareProgressModal
         isOpen={isShareOpen}
         onClose={() => setIsShareOpen(false)}
@@ -252,6 +261,12 @@ function App() {
       <CheatSheetModal
         isOpen={isCheatSheetOpen}
         onClose={() => setIsCheatSheetOpen(false)}
+      />
+
+      <PathQuizModal
+        isOpen={isQuizOpen}
+        onClose={() => setIsQuizOpen(false)}
+        onSelectPath={setSelectedPath}
       />
 
       <div className="fixed top-1/4 -right-64 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>

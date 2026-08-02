@@ -69,6 +69,13 @@ Don't know where to begin? Eliminate analysis paralysis:
 
 📁 **Starter template:** [`projects/03-micro-saas/`](projects/03-micro-saas/)
 
+### 🧪 PROJECT #4: "Multi-Agent Orchestrator"
+**Why it matters:** 👉 Advanced multi-agent orchestration is the core pattern for complex 2026 AI systems.
+**Task description:** An autonomous loop with Planner, Executor, and Reviewer agents collaborating to solve tasks.
+*Success criteria: Self-correcting feedback loop between Planner, Executor, and Reviewer until output passes validation.*
+
+📁 **Starter template:** [`projects/04-multi-agent-orchestrator/`](projects/04-multi-agent-orchestrator/)
+
 ---
 
 ## 🎯 RESULT
