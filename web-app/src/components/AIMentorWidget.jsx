@@ -1,35 +1,59 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/language';
+
+const ROADMAP_SYSTEM_PROMPT = `You are the official AI Navigator for the "AI Roadmap 2026 — From Zero to Builder" website (https://alevoldon.github.io/full_roadmap_ai_enthusiast_2026/).
+Your role is to guide users strictly regarding this website, its 3 learning paths (Beginner, Developer, Money), 4 starter projects (01-content-factory, 02-telegram-mcp, 03-micro-saas, 04-multi-agent-orchestrator), the 2026 core tech stack (MCP, RAG, GPT-5.5, Claude Opus 4.8, Supabase pgvector, LangGraph, PydanticAI), and site features (Search, Quiz, Cheat Sheet 2026, Achievements, Progress Exporter).
+Be helpful, concise, professional, and write in the user's language.`;
 
 export const AIMentorWidget = () => {
   const { lang } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [inputQuery, setInputQuery] = useState('');
+
+  // Provider Settings
+  const [provider, setProvider] = useState(() => localStorage.getItem('ai_mentor_provider') || 'groq');
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem('ai_mentor_apikey') || '');
+
   const [chatHistory, setChatHistory] = useState([
     {
       sender: 'mentor',
       text: lang === 'ru'
-        ? 'Привет! Я ваш ИИ-Навигатор по сайту Дорожная карта ИИ 2026. Задайте любой вопрос по трекам, проектам #1–#4, стеку или функциям дашборда.'
-        : 'Hello! I am your AI Navigator for the 2026 AI Roadmap site. Ask me anything about our paths, projects #1–#4, tech stack, or dashboard tools.'
+        ? 'Привет! Я ваш ИИ-Навигатор по сайту Дорожная карта ИИ 2026. Задайте любой вопрос по трекам, проектам #1–#4, стеку или настройкам моделей.'
+        : 'Hello! I am your AI Navigator for the 2026 AI Roadmap site. Ask me anything about our paths, projects #1–#4, tech stack, or live LLM settings.'
     }
   ]);
+
+  useEffect(() => {
+    localStorage.setItem('ai_mentor_provider', provider);
+  }, [provider]);
+
+  useEffect(() => {
+    localStorage.setItem('ai_mentor_apikey', apiKey);
+  }, [apiKey]);
 
   const presetQuestions = lang === 'ru'
     ? [
         'Какие проекты входят в карту?',
         'Что изучать на треке Разработчика?',
-        'Как устроена Шпаргалка 2026?'
+        'Как настроить бесплатный API ключ (Groq/Gemini)?'
       ]
     : [
         'Which starter projects are included?',
         'What to study in Developer Path?',
-        'How does Cheat Sheet 2026 work?'
+        'How to set up free API key (Groq/Gemini)?'
       ];
 
-  const getSiteSpecificAnswer = (query) => {
+  const getSiteSpecificFallbackAnswer = (query) => {
     const q = query.toLowerCase();
 
-    // 1. Projects
+    if (q.includes('ключ') || q.includes('key') || q.includes('groq') || q.includes('gemini') || q.includes('настро')) {
+      return lang === 'ru'
+        ? 'Нажмите ⚙️ Настройки в шапке Ментора. Вставьте бесплатный API-ключ от Groq (console.groq.com) или Google Gemini (aistudio.google.com) для включения живых ответов моделей Llama 3.3 70B / Gemini 2.5 Flash в реальном времени!'
+        : 'Click ⚙️ Settings in the Mentor header. Paste a free API key from Groq (console.groq.com) or Google Gemini (aistudio.google.com) to enable live real-time LLM responses!';
+    }
+
     if (q.includes('проект') || q.includes('project') || q.includes('проекты') || q.includes('projects')) {
       if (q.includes('1') || q.includes('фабрика') || q.includes('content')) {
         return lang === 'ru'
@@ -56,7 +80,6 @@ export const AIMentorWidget = () => {
         : 'The roadmap features 4 starter project templates:\n1. Smart Content Factory\n2. Second Brain Telegram Bot + MCP\n3. B2B Micro-SaaS\n4. Multi-Agent Orchestrator. Sources are in projects/!';
     }
 
-    // 2. Paths
     if (q.includes('трек') || q.includes('path') || q.includes('уровн') || q.includes('level') || q.includes('новичок') || q.includes('разработчик') || q.includes('монетизаци')) {
       if (q.includes('новичок') || q.includes('beginner') || q.includes('1')) {
         return lang === 'ru'
@@ -78,51 +101,74 @@ export const AIMentorWidget = () => {
         : 'The roadmap has 3 learning paths: 🟢 1. Beginner, 🟡 2. Developer, 💰 3. Money Path. Use the 🧩 Quiz button in the header to find your recommended starting point!';
     }
 
-    // 3. Site features
-    if (q.includes('тест') || q.includes('quiz') || q.includes('поиск') || q.includes('search') || q.includes('шпаргалк') || q.includes('cheat') || q.includes('экспорт') || q.includes('export') || q.includes('ачив') || q.includes('достижен')) {
-      if (q.includes('тест') || q.includes('quiz')) {
-        return lang === 'ru'
-          ? 'Экспресс-тест (кнопка 🧩 Пройти тест) задает 4 вопроса о вашем опыте и целях, затем высчитывает и подсвечивает наиболее подходящий трек.'
-          : 'The diagnostic quiz (🧩 Quiz button) asks 4 questions about your skills & goals, then highlights your recommended starting path.';
-      }
-      if (q.includes('шпаргалк') || q.includes('cheat')) {
-        return lang === 'ru'
-          ? 'Шпаргалка 2026 (кнопка 💡 в шапке) содержит готовые шаблоны кода и паттерны для MCP Protocol, промптинга рассуждающих моделей и семантического кэша.'
-          : 'Cheat Sheet 2026 (💡 button) provides code snippets for MCP Protocol, reasoning system prompting, and semantic routing.';
-      }
-      if (q.includes('ачив') || q.includes('достижен') || q.includes('badge')) {
-        return lang === 'ru'
-          ? 'Раздел Достижений автоматически разблокирует награды (MCP Explorer, Agent Architect, SaaS Monetizer, 2026 AI Master) по мере выполнения задач карты.'
-          : 'The Achievements section automatically unlocks badges (MCP Explorer, Agent Architect, SaaS Monetizer, 2026 AI Master) as your progress grows.';
-      }
-      return lang === 'ru'
-        ? 'На сайте доступны интерактивные функции: Поисковая строка, Экспресс-тест (🧩), Шпаргалка 2026 (💡), Экспорт прогресса в Markdown/JSON (📤) и Система достижений (🏆).'
-        : 'Interactive site tools include: Real-time Search, Path Diagnostic Quiz (🧩), Cheat Sheet 2026 (💡), Progress Exporter (📤), and Achievements (🏆).';
-    }
-
-    // 4. Core Stack
-    if (q.includes('стек') || q.includes('stack') || q.includes('mcp') || q.includes('gpt') || q.includes('claude') || q.includes('rag') || q.includes('langgraph') || q.includes('pydantic')) {
-      return lang === 'ru'
-        ? 'Стек 2026 на сайте включает: Модели (GPT-5.5, o3-mini, Claude Fable 5 / Opus 4.8 / Sonnet 4.6, Gemini 3.5), Протоколы (MCP), Оркестрацию (LangGraph, PydanticAI, Vercel AI SDK), Фронтенд (Next.js 15, Tailwind v4) и Базы данных (Supabase pgvector, Pinecone).'
-        : 'The 2026 Core Stack features: Models (GPT-5.5, o3-mini, Claude Opus 4.8/Fable 5, Gemini 3.5), Protocols (MCP), Orchestration (LangGraph, PydanticAI, Vercel AI SDK), Frontend (Next.js 15, Tailwind v4), and Databases (Supabase pgvector).';
-    }
-
-    // Strict Out-of-Scope Fallback (focusing strictly on the site)
     return lang === 'ru'
-      ? `Я ИИ-Навигатор по этому сайту. Я отвечаю строго по материалам Дорожной карты ИИ 2026: трекам (Beginner/Developer/Money), стартовым проектам #1–#4, стеку (MCP, RAG, GPT-5.5, Opus 4.8) и функциям дашборда. Задайте вопрос по материалам сайта!`
-      : `I am the AI Navigator for this 2026 AI Roadmap website. I strictly answer questions about our paths (Beginner/Developer/Money), starter projects #1–#4, tech stack (MCP, RAG, GPT-5.5, Opus 4.8), and dashboard tools. Ask me anything about the site!`;
+      ? `Я ИИ-Навигатор по этому сайту. Я отвечаю строго по материалам Дорожной карты ИИ 2026: трекам (Beginner/Developer/Money), стартовым проектам #1–#4, стеку (MCP, RAG, GPT-5.5, Opus 4.8) и функциям дашборда. Нажмите ⚙️ чтобы добавить бесплатный ключ Groq/Gemini!`
+      : `I am the AI Navigator for this 2026 AI Roadmap website. I strictly answer questions about our paths (Beginner/Developer/Money), starter projects #1–#4, tech stack (MCP, RAG, GPT-5.5, Opus 4.8), and dashboard tools. Click ⚙️ to add a free Groq/Gemini key!`;
   };
 
-  const handleSend = (textToSend) => {
+  const callLiveLLM = async (query) => {
+    if (!apiKey.trim()) return null;
+
+    try {
+      if (provider === 'groq') {
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey.trim()}`
+          },
+          body: JSON.stringify({
+            model: 'llama-3.3-70b-versatile',
+            messages: [
+              { role: 'system', content: ROADMAP_SYSTEM_PROMPT },
+              { role: 'user', content: query }
+            ],
+            temperature: 0.5,
+            max_tokens: 400
+          })
+        });
+        const data = await response.json();
+        return data?.choices?.[0]?.message?.content || null;
+      } else if (provider === 'gemini') {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey.trim()}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [
+              { parts: [{ text: `${ROADMAP_SYSTEM_PROMPT}\n\nUser Question: ${query}` }] }
+            ]
+          })
+        });
+        const data = await response.json();
+        return data?.candidates?.[0]?.content?.parts?.[0]?.text || null;
+      }
+    } catch {
+      return null;
+    }
+    return null;
+  };
+
+  const handleSend = async (textToSend) => {
     const query = textToSend || inputQuery;
-    if (!query.trim()) return;
+    if (!query.trim() || isLoading) return;
 
     const userMessage = { sender: 'user', text: query };
-    const answer = getSiteSpecificAnswer(query);
-    const mentorMessage = { sender: 'mentor', text: answer };
-
-    setChatHistory((prev) => [...prev, userMessage, mentorMessage]);
+    setChatHistory((prev) => [...prev, userMessage]);
     if (!textToSend) setInputQuery('');
+    setIsLoading(true);
+
+    let answer = null;
+    if (apiKey.trim()) {
+      answer = await callLiveLLM(query);
+    }
+
+    if (!answer) {
+      answer = getSiteSpecificFallbackAnswer(query);
+    }
+
+    const mentorMessage = { sender: 'mentor', text: answer };
+    setChatHistory((prev) => [...prev, mentorMessage]);
+    setIsLoading(false);
   };
 
   return (
@@ -136,20 +182,75 @@ export const AIMentorWidget = () => {
           <span className="hidden sm:inline text-sm">ИИ-Навигатор</span>
         </button>
       ) : (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl w-80 sm:w-96 shadow-2xl overflow-hidden flex flex-col max-h-[500px]">
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl w-80 sm:w-96 shadow-2xl overflow-hidden flex flex-col max-h-[520px]">
           {/* Header */}
           <div className="bg-slate-950 p-4 border-b border-slate-800 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-secondary">smart_toy</span>
-              <span className="font-bold text-white text-sm">ИИ-Навигатор по сайту</span>
+              <span className="font-bold text-white text-sm">ИИ-Навигатор</span>
+              {apiKey.trim() ? (
+                <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-wider">
+                  Live {provider.toUpperCase()}
+                </span>
+              ) : (
+                <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px] font-bold uppercase tracking-wider">
+                  Built-in
+                </span>
+              )}
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-slate-400 hover:text-white"
-            >
-              <span className="material-symbols-outlined text-sm">close</span>
-            </button>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+                className={`p-1 rounded transition-colors ${isSettingsOpen ? 'text-amber-400' : 'text-slate-400 hover:text-white'}`}
+                title="Model Settings"
+              >
+                <span className="material-symbols-outlined text-sm">settings</span>
+              </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-slate-400 hover:text-white p-1"
+              >
+                <span className="material-symbols-outlined text-sm">close</span>
+              </button>
+            </div>
           </div>
+
+          {/* Settings Drawer */}
+          {isSettingsOpen && (
+            <div className="p-4 bg-slate-950 border-b border-slate-800 text-xs space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-slate-200">⚙️ Live LLM Settings</span>
+                <span className="text-[10px] text-slate-500">Free API Key</span>
+              </div>
+
+              <div>
+                <label className="block text-[11px] text-slate-400 mb-1">Provider:</label>
+                <select
+                  value={provider}
+                  onChange={(e) => setProvider(e.target.value)}
+                  className="w-full bg-slate-900 border border-slate-800 text-white rounded-lg px-2.5 py-1.5 focus:outline-none"
+                >
+                  <option value="groq">Groq Cloud (Llama 3.3 70B - Ultra Fast)</option>
+                  <option value="gemini">Google Gemini (Gemini 2.5 Flash)</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[11px] text-slate-400 mb-1">API Key:</label>
+                <input
+                  type="password"
+                  value={apiKey}
+                  onChange={(e) => setApiKey(e.target.value)}
+                  placeholder={provider === 'groq' ? 'gsk_...' : 'AIzaSy...'}
+                  className="w-full bg-slate-900 border border-slate-800 text-white rounded-lg px-2.5 py-1.5 focus:outline-none"
+                />
+                <p className="text-[10px] text-slate-500 mt-1">
+                  Get free key: {provider === 'groq' ? 'console.groq.com' : 'aistudio.google.com'}
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Messages */}
           <div className="p-4 flex-1 overflow-y-auto space-y-3 text-xs">
@@ -165,6 +266,11 @@ export const AIMentorWidget = () => {
                 {msg.text}
               </div>
             ))}
+            {isLoading && (
+              <div className="p-3 bg-slate-800/60 rounded-xl text-slate-400 text-xs italic animate-pulse">
+                {lang === 'ru' ? 'ИИ-Навигатор формирует ответ...' : 'AI Navigator generating live answer...'}
+              </div>
+            )}
           </div>
 
           {/* Presets */}
@@ -192,7 +298,8 @@ export const AIMentorWidget = () => {
             />
             <button
               onClick={() => handleSend()}
-              className="px-3 py-1.5 bg-primary text-white font-bold rounded-xl text-xs hover:bg-primary/80 transition-colors"
+              disabled={isLoading}
+              className="px-3 py-1.5 bg-primary text-white font-bold rounded-xl text-xs hover:bg-primary/80 transition-colors disabled:opacity-50"
             >
               <span className="material-symbols-outlined text-sm">send</span>
             </button>
