@@ -17,11 +17,11 @@ const Header = ({ onOpenCheatSheet, onOpenShare }) => {
 
   return (
     <>
-      <header className="fixed top-0 w-full border-b border-primary/20 bg-slate-950/80 backdrop-blur-xl flex justify-between items-center px-4 sm:px-8 h-16 sm:h-20 max-w-full mx-auto z-50 shadow-[0_0_20px_rgba(168,85,247,0.15)] font-space-grotesk tracking-tight">
-        <div className="flex items-center gap-4 sm:gap-8">
+      <header className="fixed top-0 w-full border-b border-primary/20 bg-slate-950/80 backdrop-blur-xl flex justify-between items-center px-3 sm:px-8 h-16 sm:h-20 max-w-full mx-auto z-50 shadow-[0_0_20px_rgba(168,85,247,0.15)] font-space-grotesk tracking-tight">
+        <div className="flex items-center gap-2 sm:gap-6 min-w-0 flex-1 mr-2">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden text-slate-300 hover:text-white p-1 focus:outline-none"
+            className="lg:hidden text-slate-300 hover:text-white p-1 flex-shrink-0 focus:outline-none"
             aria-label="Toggle navigation menu"
           >
             <span className="material-symbols-outlined text-2xl">
@@ -29,11 +29,12 @@ const Header = ({ onOpenCheatSheet, onOpenShare }) => {
             </span>
           </button>
 
-          <a href="#" className="text-lg sm:text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent truncate">
-            {t('title')}
+          <a href="#" className="font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent truncate min-w-0">
+            <span className="sm:hidden text-base tracking-tight whitespace-nowrap">AI Roadmap 2026</span>
+            <span className="hidden sm:inline text-xl">{t('title')}</span>
           </a>
 
-          <nav className="hidden lg:flex gap-6">
+          <nav className="hidden lg:flex gap-6 flex-shrink-0">
             <a className="text-primary border-b-2 border-primary pb-1 text-sm font-medium" href="#paths">{t('pathways')}</a>
             <a className="text-slate-400 hover:text-slate-200 text-sm font-medium transition-colors" href="#stack">{t('stack')}</a>
             <a className="text-slate-400 hover:text-slate-200 text-sm font-medium transition-colors" href="#projects">{t('projects')}</a>
@@ -41,10 +42,10 @@ const Header = ({ onOpenCheatSheet, onOpenShare }) => {
           </nav>
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
           <button
             onClick={onOpenCheatSheet}
-            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 transition-all text-xs font-semibold cursor-pointer"
+            className="flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 transition-all text-xs font-semibold cursor-pointer"
             title={t('cheatSheet')}
           >
             💡 <span className="hidden sm:inline">{t('cheatSheet')}</span>
@@ -52,7 +53,7 @@ const Header = ({ onOpenCheatSheet, onOpenShare }) => {
 
           <button
             onClick={onOpenShare}
-            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 transition-all text-xs font-semibold cursor-pointer"
+            className="flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 transition-all text-xs font-semibold cursor-pointer"
             title={t('shareProgress')}
           >
             📤 <span className="hidden sm:inline">{t('shareProgress')}</span>
@@ -60,7 +61,7 @@ const Header = ({ onOpenCheatSheet, onOpenShare }) => {
 
           <button 
             onClick={toggleLanguage}
-            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border border-primary/30 bg-slate-900/60 hover:bg-primary/10 text-primary hover:text-white transition-all text-xs font-bold font-space-grotesk tracking-widest uppercase cursor-pointer"
+            className="flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-lg border border-primary/30 bg-slate-900/60 hover:bg-primary/10 text-primary hover:text-white transition-all text-xs font-bold font-space-grotesk tracking-wider uppercase cursor-pointer whitespace-nowrap"
           >
             🌐 {lang === 'en' ? 'RU' : 'EN'}
           </button>
