@@ -137,7 +137,7 @@ export const initialProjects = [
     },
     xp: 500,
     completed: false,
-    url: 'https://modelcontextprotocol.io',
+    url: `${REPO_BASE}/tree/main/projects/02-telegram-mcp`,
   },
   {
     id: 3,
@@ -148,7 +148,7 @@ export const initialProjects = [
     },
     xp: 1000,
     completed: false,
-    url: 'https://clerk.com/docs',
+    url: `${REPO_BASE}/tree/main/projects/03-micro-saas`,
   },
 ];
 
@@ -301,3 +301,66 @@ export const faqs = {
 };
 
 export const LIVE_DASHBOARD_URL = 'https://alevoldon.github.io/full_roadmap_ai_enthusiast_2026/';
+
+export const cheatSheets = {
+  en: [
+    {
+      title: 'Model Context Protocol (MCP)',
+      icon: '🔌',
+      description: 'Open standard for connecting AI models to local files, tools, and DBs safely.',
+      code: `// FastMCP Server Example (Python)
+from mcp.server.fastmcp import FastMCP
+mcp = FastMCP("My Server")
+
+@mcp.tool()
+def read_file(path: str) -> str:
+    return open(path).read()`,
+    },
+    {
+      title: 'Reasoning System Prompting',
+      icon: '🧠',
+      description: 'System prompting for System 2 reasoning models (GPT-5.5 / Claude Opus 4.8).',
+      code: `SYSTEM_PROMPT = """Think step-by-step before producing your final answer.
+Break down complex logic into explicit sub-tasks.
+State assumptions clearly."""`,
+    },
+    {
+      title: 'Semantic Routing & Caching',
+      icon: '⚡',
+      description: 'Route cheap queries to fast models and cache semantically similar prompts.',
+      code: `# Vector Similarity Caching Pattern
+if cosine_similarity(query_emb, cached_emb) > 0.95:
+    return cached_response`,
+    },
+  ],
+  ru: [
+    {
+      title: 'Model Context Protocol (MCP)',
+      icon: '🔌',
+      description: 'Открытый стандарт безопасного подключения ИИ к локальным файлам и БД.',
+      code: `# Пример FastMCP сервера (Python)
+from mcp.server.fastmcp import FastMCP
+mcp = FastMCP("My Server")
+
+@mcp.tool()
+def read_file(path: str) -> str:
+    return open(path).read()`,
+    },
+    {
+      title: 'Промптинг рассуждающих моделей',
+      icon: '🧠',
+      description: 'Системные промпты для моделей с рассуждениями (GPT-5.5 / Claude Opus 4.8).',
+      code: `SYSTEM_PROMPT = """Рассуждайте пошагово перед итоговым ответом.
+Разбивайте сложную логику на подзадачи.
+Явно указывайте допущения."""`,
+    },
+    {
+      title: 'Семантическая маршрутизация и кэш',
+      icon: '⚡',
+      description: 'Маршрутизируйте быстрые запросы на SLM и кэшируйте похожие промпты.',
+      code: `# Паттерн семантического кэша
+if cosine_similarity(query_emb, cached_emb) > 0.95:
+    return cached_response`,
+    },
+  ],
+};

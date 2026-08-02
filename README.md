@@ -50,6 +50,8 @@ Don't know where to begin? Eliminate analysis paralysis:
 **Task description:** A Telegram bot using RAG to answer questions strictly based on your files (PDFs/Links), coupled with a custom MCP server to connect the bot to your local file system or Notion.
 *Success criteria: The bot does not hallucinate facts, referencing your documents and using MCP for access.*
 
+📁 **Starter template:** [`projects/02-telegram-mcp/`](projects/02-telegram-mcp/)
+
 ---
 
 ## 💰 3. MONEY PATH: Product and Market
@@ -64,6 +66,8 @@ Don't know where to begin? Eliminate analysis paralysis:
 **Why it matters:** 👉 This is your first working business in the cloud.
 **Task description:** A full-featured web application that solves a narrow B2B problem (e.g., an AI-powered legal contract generator).
 *Success criteria: Working UI, user authentication, semantic request caching, and a basic Stripe payment integration.*
+
+📁 **Starter template:** [`projects/03-micro-saas/`](projects/03-micro-saas/)
 
 ---
 

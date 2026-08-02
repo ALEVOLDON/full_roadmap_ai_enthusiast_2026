@@ -15,6 +15,9 @@ import AIHub from './components/AIHub';
 import FAQ from './components/FAQ';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
+import SearchFilter from './components/SearchFilter';
+import ShareProgressModal from './components/ShareProgressModal';
+import CheatSheetModal from './components/CheatSheetModal';
 
 function mergeTimelineState(saved) {
   return timelineStages.map((stage) => {
@@ -33,6 +36,10 @@ function App() {
   const [selectedPath, setSelectedPath] = useState(() => {
     return localStorage.getItem('ai_roadmap_2026_path') || 'developer';
   });
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isCheatSheetOpen, setIsCheatSheetOpen] = useState(false);
 
   const [projects, setProjects] = useState(() => {
     const saved = localStorage.getItem('ai_roadmap_2026_projects');
@@ -133,6 +140,15 @@ function App() {
     }));
   };
 
+  const handleResetProgress = () => {
+    setProjects(initialProjects);
+    setPathsState(paths);
+    setTimelineState(timelineStages);
+    localStorage.removeItem('ai_roadmap_2026_projects');
+    localStorage.removeItem('ai_roadmap_2026_paths_state');
+    localStorage.removeItem('ai_roadmap_2026_timeline_state');
+  };
+
   const totalSteps = pathsState.reduce((acc, p) => acc + p.steps.length, 0);
   const completedSteps = pathsState.reduce((acc, p) => acc + p.steps.filter((s) => s.completed).length, 0);
   const totalTimelineTasks = timelineState.reduce((acc, s) => acc + s.tasks.length, 0);
@@ -142,56 +158,67 @@ function App() {
   const completedItems = completedSteps + completedTimelineTasks + completedProjects;
   const globalProgress = Math.round((completedItems / totalItems) * 100);
 
-  const handleExportProgress = () => {
-    const payload = {
-      exportedAt: new Date().toISOString(),
-      selectedPath,
-      paths: pathsState.map((p) => ({ id: p.id, steps: p.steps.map((s) => ({ id: s.id, completed: s.completed })) })),
-      projects: projects.map((p) => ({ id: p.id, completed: p.completed })),
-      timeline: timelineState.map((s) => ({ id: s.id, tasks: s.tasks.map((t) => ({ id: t.id, completed: t.completed })) })),
-      globalProgress,
-    };
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `ai-roadmap-progress-${new Date().toISOString().slice(0, 10)}.json`;
-    link.click();
-    URL.revokeObjectURL(url);
+  const pathProgresses = {
+    beginner: pathsState.find(p => p.id === 'beginner')?.progress || 0,
+    developer: pathsState.find(p => p.id === 'developer')?.progress || 0,
+    money: pathsState.find(p => p.id === 'money')?.progress || 0,
   };
+
+  // Filter content based on search query
+  const filteredPaths = searchQuery.trim() === ''
+    ? pathsState
+    : pathsState.map((path) => {
+        const query = searchQuery.toLowerCase();
+        const matchesTitle = path.title.en.toLowerCase().includes(query) || path.title.ru.toLowerCase().includes(query);
+        const filteredSteps = path.steps.filter(
+          (step) => step.label.en.toLowerCase().includes(query) || step.label.ru.toLowerCase().includes(query)
+        );
+        return matchesTitle ? path : { ...path, steps: filteredSteps };
+      });
 
   return (
     <div className="mesh-gradient min-h-screen">
-      <Header />
+      <Header
+        onOpenCheatSheet={() => setIsCheatSheetOpen(true)}
+        onOpenShare={() => setIsShareOpen(true)}
+      />
       <Sidebar />
 
       <main className="lg:ml-64 pt-32 px-6 lg:px-12 pb-24 max-w-7xl mx-auto">
         <section className="mb-section-gap">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl lg:text-7xl font-bold text-on-surface mb-6 leading-tight font-space-grotesk"
-          >
-            {t('forgeYour')} <span className="text-primary">{t('intelligence')}</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-lg lg:text-xl text-on-surface-variant max-w-2xl mb-12 font-body-lg"
-          >
-            {t('heroSubtitle')}
-          </motion.p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6">
+            <div>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-4xl lg:text-7xl font-bold text-on-surface mb-4 leading-tight font-space-grotesk"
+              >
+                {t('forgeYour')} <span className="text-primary">{t('intelligence')}</span>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-lg lg:text-xl text-on-surface-variant max-w-2xl font-body-lg"
+              >
+                {t('heroSubtitle')}
+              </motion.p>
+            </div>
+            
+            <div className="w-full md:w-auto">
+              <SearchFilter searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+            </div>
+          </div>
 
           <PathSelector
-            paths={pathsState}
+            paths={filteredPaths}
             selectedPath={selectedPath}
             onSelect={setSelectedPath}
             onToggleStep={handleToggleStep}
           />
         </section>
 
-        <ProgressDashboard progress={globalProgress} onExport={handleExportProgress} />
+        <ProgressDashboard progress={globalProgress} onExport={() => setIsShareOpen(true)} />
 
         <CoreStack stack={coreStack} />
 
@@ -213,6 +240,19 @@ function App() {
       </main>
 
       <Footer />
+
+      <ShareProgressModal
+        isOpen={isShareOpen}
+        onClose={() => setIsShareOpen(false)}
+        overallProgress={globalProgress}
+        pathProgresses={pathProgresses}
+        onResetProgress={handleResetProgress}
+      />
+
+      <CheatSheetModal
+        isOpen={isCheatSheetOpen}
+        onClose={() => setIsCheatSheetOpen(false)}
+      />
 
       <div className="fixed top-1/4 -right-64 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
       <div className="fixed bottom-1/4 -left-64 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>

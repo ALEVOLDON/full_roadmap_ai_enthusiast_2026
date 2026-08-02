@@ -1,6 +1,6 @@
 import { useLanguage } from '../context/language';
 
-const Header = () => {
+const Header = ({ onOpenCheatSheet, onOpenShare }) => {
   const { lang, toggleLanguage, t } = useLanguage();
 
   return (
@@ -14,16 +14,27 @@ const Header = () => {
           <a className="text-slate-400 hover:text-slate-200 transition-colors" href="#hub">{t('community')}</a>
         </nav>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
+        <button
+          onClick={onOpenCheatSheet}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 transition-all text-xs font-semibold cursor-pointer"
+        >
+          💡 <span className="hidden sm:inline">{t('cheatSheet')}</span>
+        </button>
+
+        <button
+          onClick={onOpenShare}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 transition-all text-xs font-semibold cursor-pointer"
+        >
+          📤 <span className="hidden sm:inline">{t('shareProgress')}</span>
+        </button>
+
         <button 
           onClick={toggleLanguage}
           className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-primary/30 bg-slate-900/60 hover:bg-primary/10 text-primary hover:text-white transition-all text-xs font-bold font-space-grotesk tracking-widest uppercase cursor-pointer"
         >
           🌐 {lang === 'en' ? 'RU' : 'EN'}
         </button>
-        <div className="px-4 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest hidden sm:block">
-          {t('fromZeroToBuilder')}
-        </div>
       </div>
     </header>
   );

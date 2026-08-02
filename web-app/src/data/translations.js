@@ -56,6 +56,16 @@ export const translations = {
     // Footer
     footerSubtitle: "Build > Learn",
     rightsReserved: "© 2026 Synthetic Horizon. No rights reserved. Just code.",
+
+    // New Interactive Features
+    searchPlaceholder: "Search models, tools, MCP, RAG...",
+    shareProgress: "Share Progress",
+    resetProgress: "Reset Progress",
+    cheatSheet: "Cheat Sheet 2026",
+    copyMarkdown: "Copy Markdown Card",
+    exportJson: "Export JSON",
+    importJson: "Import JSON",
+    copied: "Copied!",
   },
   ru: {
     // Header & Navigation
@@ -114,5 +124,15 @@ export const translations = {
     // Footer
     footerSubtitle: "Сначала собирайте, потом изучайте",
     rightsReserved: "© 2026 Synthetic Horizon. Права не защищены. Только код.",
+
+    // New Interactive Features
+    searchPlaceholder: "Поиск моделей, инструментов, MCP, RAG...",
+    shareProgress: "Поделиться прогрессом",
+    resetProgress: "Сбросить прогресс",
+    cheatSheet: "Шпаргалка 2026",
+    copyMarkdown: "Скопировать карточку",
+    exportJson: "Экспорт JSON",
+    importJson: "Импорт JSON",
+    copied: "Скопировано!",
   }
 };
