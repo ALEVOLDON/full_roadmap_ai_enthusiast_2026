@@ -4,9 +4,13 @@
 Exposes local knowledge base documents via Model Context Protocol (MCP) tools.
 """
 
-import json
 import os
+import sys
 from pathlib import Path
+
+# Ensure UTF-8 output formatting on Windows terminals
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 DOCS_DIR = Path(__file__).parent / "knowledge_base"
 
@@ -54,10 +58,10 @@ def search_knowledge_base(query: str) -> list[dict]:
 
 
 def main() -> None:
-    print("🧠 Second Brain MCP Server running (Stdio Mode)")
-    print(f"📁 Knowledge Base Directory: {DOCS_DIR}")
+    print("[+] Second Brain MCP Server running (Stdio Mode)")
+    print(f"[*] Knowledge Base Directory: {DOCS_DIR}")
     docs = list_documents()
-    print(f"📄 Loaded {len(docs)} document(s): {[d['name'] for d in docs]}")
+    print(f"[*] Loaded {len(docs)} document(s): {[d['name'] for d in docs]}")
 
 
 if __name__ == "__main__":

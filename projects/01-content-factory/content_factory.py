@@ -12,6 +12,9 @@ from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
 load_dotenv()
 
 OUTPUT_DIR = Path(__file__).parent / "output"
