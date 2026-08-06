@@ -1,5 +1,7 @@
 # 🚀 AI Roadmap 2026 — From Zero to Builder
 
+![AI Roadmap 2026 Cover](assets/cover.jpg)
+
 🇷🇺 [Русская версия](README.ru.md) | 🇺🇸 [English version](README.md)
 
 🔥 **Stop wasting time on useless AI courses.**  
